@@ -1,0 +1,19 @@
+meta {
+  name: Update User
+  type: http
+  seq: 3
+}
+
+put {
+  url: http://localhost:3000/api/user/658df1467db118ca2b97ffbe
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+      "name": "Hugolino",
+      "email":"hugolinoguimaraes@sesisp.org.br",
+      "nif": "1087483"
+  }
+}

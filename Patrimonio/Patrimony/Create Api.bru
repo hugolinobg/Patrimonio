@@ -1,0 +1,23 @@
+meta {
+  name: Create Api
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:3000/api/patrimony/
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+      "sector": "Sala 10",
+      "numberPatrimony": 175264,
+      "description": "Televisão LG 55",
+      "unitDeliveryDate": "18/03/2023",
+      "previousSector": null,
+      "transferDate": null,
+      "destinationLocation": null
+  }
+}

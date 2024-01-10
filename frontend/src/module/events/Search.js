@@ -1,0 +1,26 @@
+import { inputSearch, tableLists } from "../elements/Elements.js"
+
+inputSearch.addEventListener("keyup", Search)
+
+function Search() {
+  let inputSearchValue = inputSearch.value.toLowerCase()
+  let listsTr = tableLists.getElementsByTagName("tr")
+
+  if (inputSearchValue.length <= 2) {
+    return
+  }
+
+  for (let position in listsTr) {
+    if (true === isNaN(position)) {
+      continue
+    }
+
+    let contentLineTd = listsTr[position].innerHTML.toLowerCase()
+
+    true === contentLineTd.includes(inputSearchValue)
+      ? (listsTr[position].style.display = "")
+      : (listsTr[position].style.display = "none")
+  }
+}
+
+export default Search

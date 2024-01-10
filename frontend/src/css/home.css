@@ -1,0 +1,42 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-width: 1500px;
+  gap: 2.5rem;
+}
+
+.input-group-text {
+  font-size: 2rem;
+}
+
+.form-control {
+  padding: 1rem !important;
+  font-size: 1.4rem !important;
+  width: 60% !important;
+  font-weight: bold;
+}
+
+.table-dark th {
+  text-align: center !important;
+}
+
+.btn {
+  font-size: 1.3rem !important;
+}
+
+.form-check-input:checked {
+    background-color: hsl(145, 86%, 48%);
+    border-color: hsl(145, 86%, 48%);
+}
+
+@media screen and (max-width: 400px) {
+  .btn {
+    font-size: 1rem !important;
+  }
+
+  .table-group-divider tr td {
+    font-size: 0.8rem !important;
+    text-align: center !important;
+  }
+}

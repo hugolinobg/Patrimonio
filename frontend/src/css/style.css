@@ -1,0 +1,62 @@
+@import url("./home.css");
+@import url("./register.css");
+@import url("./update.css");
+
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:root {
+  font-size: 62.5%;
+  font-family: "Roboto", sans-serif;
+  scroll-behavior: smooth;
+
+  --color-scrollbar-track: #1a1924;
+  --color-scrollbar-thumb: #282843;
+}
+
+body::-webkit-scrollbar {
+  width: 0.7rem;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: var(--color-scrollbar-thumb);
+  border-radius: 999px;
+}
+
+body::-webkit-scrollbar-track {
+  background-color: var(--color-scrollbar-track);
+}
+
+body {
+  font-size: 1.4rem;
+  background-color: #dedede;
+}
+
+@media screen and (min-width: 1500px) {
+  .container,
+  .container-lg,
+  .container-md,
+  .container-sm,
+  .container-xl,
+  .container-xxl {
+    max-width: 1450px !important;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  body {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  body {
+    font-size: 0.5rem;
+  }
+}
