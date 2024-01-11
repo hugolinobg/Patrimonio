@@ -26,8 +26,12 @@
 }
 
 .form-check-input:checked {
-    background-color: hsl(145, 86%, 48%);
-    border-color: hsl(145, 86%, 48%);
+  background-color: hsl(145, 86%, 48%);
+  border-color: hsl(145, 86%, 48%);
+}
+
+.form-control {
+  width: 100% !important;
 }
 
 @media screen and (max-width: 400px) {

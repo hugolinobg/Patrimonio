@@ -76,6 +76,115 @@
           <tbody id="tableLists" class="table-group-divider"></tbody>
         </table>
       </section>
+
+      <section>
+        <div
+          class="modal fade"
+          id="exampleModal"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                  Editar Dados
+                </h1>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+
+              <div class="modal-body">
+                <form>
+                  <div class="mb-3">
+                    <label for="setor" class="col-form-label">Setor:</label>
+                    <input type="text" class="form-control" id="setor" />
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="numeroDoPatrimônio" class="col-form-label"
+                      >Número do Patrimônio:</label
+                    >
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="numeroDoPatrimônio"
+                    />
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="descricao" class="col-form-label"
+                      >Descrição:</label
+                    >
+                    <input type="text" class="form-control" id="descricao" />
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="numeroDoPatrimonio" class="col-form-label"
+                      >Data de Entrega na Unidade:</label
+                    >
+                    <input
+                      type="date"
+                      class="form-control"
+                      id="numeroDoPatrimonio"
+                    />
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="setorAnterior" class="col-form-label"
+                      >Setor Anterior:</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="setorAnterior"
+                    />
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="dataDeTransferencia" class="col-form-label"
+                      >Data de Transferência:</label
+                    >
+                    <input
+                      type="date"
+                      class="form-control"
+                      id="dataDeTransferencia"
+                    />
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="localizacaoDeDestino" class="col-form-label"
+                      >Localização de Destino:</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="localizacaoDeDestino"
+                    />
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-danger"
+                  data-bs-dismiss="modal"
+                >
+                  Fechar
+                </button>
+                <button type="button" class="btn btn-success">
+                  Salvar Dados
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   </body>
 </html>

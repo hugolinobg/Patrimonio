@@ -1,4 +1,4 @@
-import { urlPatrimony, tableLists } from "../elements/Elements.js"
+import { urlPatrimony, tableLists, exampleModal } from "../elements/Elements.js"
 import rowChecked from "../events/rowChecked.js"
 
 let list = ""
@@ -55,7 +55,13 @@ async function handlePageLoaded() {
                 </div>
               </td>
               <td>
-                <button class="btn btn-sm btn-warning">Editar</button>
+              <button
+                type="button"
+                class="btn btn-sm btn-warning"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+                data-bs-whatever="@mdo"
+              >Editar</button>
               </td>
         </tr>
       `
@@ -65,6 +71,28 @@ async function handlePageLoaded() {
   } catch (error) {
     console.log("Algo de erado: ", error)
   }
+}
+
+if (exampleModal) {
+  ;(" ")
+}
+{
+  exampleModal.addEventListener("show.bs.modal", (event) => {
+    // Button that triggered the modal
+    const button = event.relatedTarget
+    // Extract info from data-bs-* attributes
+    const recipient = button.getAttribute("data-bs-whatever")
+  
+    // If necessary, you could initiate an Ajax request here
+    // and then do the updating in a callback.
+
+    // Update the modal's content.
+    const modalTitle = exampleModal.querySelector(".modal-title")
+    const modalBodyInput = exampleModal.querySelector(".modal-body input")
+
+    modalTitle.textContent = `Editar Dados ${recipient}`
+    modalBodyInput.value = recipient
+  })
 }
 
 export default handlePageLoaded
