@@ -16,33 +16,29 @@ async function handlePageLoaded() {
     patrimoniesApiResults.forEach((patrimony) => {
       list += `
         <tr data-id=${patrimony._id}>
-              <td>${patrimony.sector === null ? "" : patrimony.sector}</td>
-              <td>${
-                patrimony.numberPatrimony === null
-                  ? ""
-                  : patrimony.numberPatrimony
-              }</td>
-              <td>${
-                patrimony.description === null ? "" : patrimony.description
-              }</td>
-              <td>${
-                patrimony.unitDeliveryDate === null
-                  ? ""
-                  : patrimony.unitDeliveryDate
-              }</td>
-              <td>${
-                patrimony.previousSector === null
-                  ? ""
-                  : patrimony.previousSector
-              }</td>
-              <td>${
-                patrimony.destinationLocation === null
-                  ? ""
-                  : patrimony.destinationLocation
-              }</td>
-              <td>${
-                patrimony.transferDate === null ? "" : patrimony.transferDate
-              }</td>
+              <td data-sector=${patrimony._id}>${
+        patrimony.sector === null ? "" : patrimony.sector
+      }</td>
+              <td data-numberPatrimony=${patrimony._id}>${
+        patrimony.numberPatrimony === null ? "" : patrimony.numberPatrimony
+      }</td>
+              <td data-description=${patrimony._id}>${
+        patrimony.description === null ? "" : patrimony.description
+      }</td>
+              <td data-unitDeliveryDate=${patrimony._id}>${
+        patrimony.unitDeliveryDate === null ? "" : patrimony.unitDeliveryDate
+      }</td>
+              <td data-previousSector=${patrimony._id}>${
+        patrimony.previousSector === null ? "" : patrimony.previousSector
+      }</td >
+              <td data-destinationLocation=${patrimony._id}>${
+        patrimony.destinationLocation === null
+          ? ""
+          : patrimony.destinationLocation
+      }</td>
+              <td data-transferDate=${patrimony._id}>${
+        patrimony.transferDate === null ? "" : patrimony.transferDate
+      }</td>
               <td>
                 <div class="form-check form-switch">
                   <input id=${
@@ -82,7 +78,7 @@ if (exampleModal) {
     const button = event.relatedTarget
     // Extract info from data-bs-* attributes
     const recipient = button.getAttribute("data-bs-whatever")
-  
+
     // If necessary, you could initiate an Ajax request here
     // and then do the updating in a callback.
 
