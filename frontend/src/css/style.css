@@ -12,12 +12,15 @@
 }
 
 :root {
-  font-size: 62.5%;
-  font-family: "Roboto", sans-serif;
+  font-size: 62.5% !important;
+  font-family: "Roboto", sans-serif !important;
   scroll-behavior: smooth;
 
   --color-scrollbar-track: #1a1924;
   --color-scrollbar-thumb: #282843;
+
+  --bs-breakpoint-xl: 1300px !important;
+  --bs-breakpoint-xxl: 1500px !important;
 }
 
 body::-webkit-scrollbar {
@@ -34,7 +37,7 @@ body::-webkit-scrollbar-track {
 }
 
 body {
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   background-color: #dedede;
 }
 
