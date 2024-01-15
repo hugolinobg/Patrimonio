@@ -20,17 +20,13 @@ async function rowChecked() {
       let inputChecked = document.getElementById(`${idList}`)
       let tr = document.querySelector(`[data-id="${idList}"]`)
 
-      
-      
-      inputChecked.addEventListener("change", () => {
-        const dbPatrimony =
-          JSON.parse(
-            localStorage.getItem(
-              JSON.stringify(inputChecked.id),
-              JSON.stringify(inputChecked.checked)
-            )
-          )
+      let dbPatrimony = JSON.parse(
+        localStorage.getItem(inputChecked.id, inputChecked.checked)
+      )
 
+      console.log(dbPatrimony)
+
+      inputChecked.addEventListener("change", () => {
         localStorage.setItem(
           JSON.stringify(inputChecked.id),
           JSON.stringify(inputChecked.checked)
