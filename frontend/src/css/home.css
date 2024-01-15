@@ -12,9 +12,13 @@
 
 .form-control {
   padding: 1rem !important;
-  font-size: 1.4rem !important;
-  width: 60% !important;
+  font-size: 1.1rem !important;
+  width: 100%;
   font-weight: bold;
+}
+
+#inputSearch {
+  width: 45%;
 }
 
 .table-dark th {
@@ -26,13 +30,15 @@
 }
 
 .form-check-input:checked {
-  background-color: hsl(145, 86%, 48%);
-  border-color: hsl(145, 86%, 48%);
+  background-color: hsl(145, 86%, 48%) !important;
+  border-color: hsl(145, 86%, 48%) !important;
 }
 
-.form-control {
-  width: 100% !important;
-}
+.table-success {
+    --bs-table-bg: hsla(145, 100%, 75%, 0.2) !important;
+    --bs-table-striped-bg:  hsla(145, 100%, 75%, 0.2) !important;
+    /* --bs-table-bg: hsl(145, 93%, 57%); */
+  }
 
 @media screen and (max-width: 400px) {
   .btn {
