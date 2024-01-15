@@ -15,7 +15,7 @@ function Search() {
       continue
     }
 
-    let contentLineTd = listsTr[position].innerHTML.toLowerCase()
+    let contentLineTd = listsTr[position].innerText.toLowerCase()
 
     true === contentLineTd.includes(inputSearchValue)
       ? (listsTr[position].style.display = "")
