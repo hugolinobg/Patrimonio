@@ -13,9 +13,9 @@ async function handlePageLoaded() {
 
     const patrimoniesApiResults = await response.json()
 
-    patrimoniesApiResults.forEach((patrimony) => {
+    patrimoniesApiResults.forEach((patrimony, index) => {
       list += `
-        <tr data-id=${patrimony._id}>
+        <tr id=${patrimony._id}>
               <td data-sector=${patrimony._id}>${
         patrimony.sector === null ? "" : patrimony.sector
       }</td>
@@ -41,11 +41,10 @@ async function handlePageLoaded() {
       }</td>
               <td>
                 <div class="form-check form-switch">
-                  <input id=${
-                    patrimony._id
-                  } class="form-check-input" name="checkbox" type="checkbox" role="switch" 
+                  <input data-checked=${patrimony._id} id=${
+        patrimony._id
+      } class="form-check-input" name="checkbox" type="checkbox" role="switch" 
                   >
-
                   <label class="form-check-label" for="${patrimony._id}">
                   Verificado</label>
                 </div>
@@ -53,7 +52,8 @@ async function handlePageLoaded() {
               <td>
               <button
                 type="button"
-                class="btn btn-sm btn-warning"
+                onclick="{() => updateRegister({${patrimony}})}"
+                class="btn btn-sm btn-outline-primary"
                 data-bs-toggle="modal"
                 data-bs-target="#exampleModal"
                 data-bs-whatever="@mdo"
@@ -62,11 +62,17 @@ async function handlePageLoaded() {
         </tr>
       `
     })
+
     rowChecked()
     tableLists.innerHTML = list
   } catch (error) {
     console.log("Algo de erado: ", error)
   }
+}
+
+
+function updateRegister(patrimony){
+ console.log('oii2')
 }
 
 if (exampleModal) {

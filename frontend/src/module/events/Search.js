@@ -1,8 +1,8 @@
 import { inputSearch, tableLists } from "../elements/Elements.js"
 
-inputSearch.addEventListener("keyup", Search)
+inputSearch.addEventListener("keyup", search)
 
-function Search() {
+function search() {
   let inputSearchValue = inputSearch.value.toLowerCase()
   let listsTr = tableLists.getElementsByTagName("tr")
 
@@ -23,4 +23,4 @@ function Search() {
   }
 }
 
-export default Search
+export default search

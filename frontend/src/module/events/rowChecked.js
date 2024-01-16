@@ -17,8 +17,9 @@ async function rowChecked() {
     for (let idElemento in elemento) {
       let idList = `${elemento[idElemento]}`
 
-      let inputChecked = document.getElementById(`${idList}`)
-      let tr = document.querySelector(`[data-id="${idList}"]`)
+      // let inputChecked = document.getElementById(`${idList}`)
+      let inputChecked = document.querySelector(`[data-checked="${idList}"]`)
+      let tr = document.getElementById(`${idList}`)
 
       let dbPatrimony = JSON.parse(
         localStorage.getItem(inputChecked.id, inputChecked.checked)
