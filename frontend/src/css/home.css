@@ -35,8 +35,8 @@
 }
 
 .table-success {
-    --bs-table-bg: hsla(145, 100%, 75%, 0.2) !important;
-    --bs-table-striped-bg:  hsla(145, 100%, 75%, 0.2) !important;
+    --bs-table-bg: hsla(145, 100%, 75%, 0.3) !important;
+    --bs-table-striped-bg:  hsla(145, 100%, 75%, 0.3) !important;
     /* --bs-table-bg: hsl(145, 93%, 57%); */
   }
 
