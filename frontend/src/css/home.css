@@ -35,10 +35,25 @@
 }
 
 .table-success {
-    --bs-table-bg: hsla(145, 100%, 75%, 0.3) !important;
-    --bs-table-striped-bg:  hsla(145, 100%, 75%, 0.3) !important;
-    /* --bs-table-bg: hsl(145, 93%, 57%); */
-  }
+  --bs-table-bg: hsla(145, 100%, 75%, 0.3) !important;
+  --bs-table-striped-bg: hsla(145, 100%, 75%, 0.3) !important;
+  /* --bs-table-bg: hsl(145, 93%, 57%); */
+}
+
+.form-floating {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form-floating button a{
+  text-decoration: none;
+  color: #fff;
+}
+
+.form-select-lg {
+    font-size: 1.6rem;
+}
 
 @media screen and (max-width: 400px) {
   .btn {

@@ -19,24 +19,46 @@ async function rowChecked() {
 
       // let inputChecked = document.getElementById(`${idList}`)
       let inputChecked = document.querySelector(`[data-checked="${idList}"]`)
+
       let tr = document.getElementById(`${idList}`)
 
-      let dbPatrimony = JSON.parse(
-        localStorage.getItem(inputChecked.id, inputChecked.checked)
-      )
+      // document.addEventListener(
+      //   "change",
+      //   (event) => {
+      //     let inputCheckedStorage = localStorage.getItem(inputChecked.id)
 
-      console.log(dbPatrimony)
+      //     inputCheckedStorage === inputChecked.checked
+      //       ? tr.classList.add("table-success")
+      //       : tr.classList.remove("table-success")
+      //   },
+      //   false
+      // )
 
-      inputChecked.addEventListener("change", () => {
-        localStorage.setItem(
-          JSON.stringify(inputChecked.id),
-          JSON.stringify(inputChecked.checked)
-        )
+        inputChecked.addEventListener("change", () => {
+          let inputCheckedStorage = ""
+          localStorage.setItem(inputChecked.id, inputChecked.checked)
 
-        inputChecked.checked
-          ? tr.classList.add("table-success")
-          : tr.classList.remove("table-success")
-      })
+          inputCheckedStorage = localStorage.getItem(
+            inputChecked.id
+          )
+
+          console.log(inputCheckedStorage)
+
+          inputCheckedStorage == inputChecked.checked
+            ? tr.classList.add("table-success")
+            : tr.classList.remove("table-success")
+        })
+
+      // inputChecked.addEventListener("change", () => {
+      //   localStorage.setItem(
+      //     JSON.stringify(inputChecked.id),
+      //     JSON.stringify(inputChecked.checked)
+      //   )
+
+      //   inputChecked.checked
+      //     ? tr.classList.add("table-success")
+      //     : tr.classList.remove("table-success")
+      // })
     }
   } catch (error) {
     console.log("Algo de erado: ", error)

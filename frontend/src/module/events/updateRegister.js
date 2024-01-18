@@ -1,35 +1,5 @@
 import { urlPatrimony } from "../elements/Elements.js"
 
-// function getDataForm() {
-//   const inputName = document.querySelector("#name")
-//   const inputEmail = document.querySelector("#email")
-//   const inputPassword = document.querySelector("#password")
-//   const confirmationPassword = document.querySelector("#passwordConf")
-
-//   if (
-//     inputName.value === "" ||
-//     inputEmail.value === "" ||
-//     inputPassword.value === "" ||
-//     confirmationPassword.value === ""
-//   ) {
-//     alert("Preencha todos os campos!")
-//     return
-//   }
-
-//   if (inputPassword.value !== confirmationPassword.value) {
-//     alert("Senha não conferem!")
-//     return
-//   }
-
-//   const dataForm = {
-//     name: inputName.value,
-//     email: inputEmail.value,
-//     password: inputPassword.value,
-//   }
-
-//   return dataForm
-// }
-
 async function updateRegister() {
   try {
     const response = await fetch(urlPatrimony)
@@ -81,7 +51,7 @@ async function updateRegister() {
 
       getData = dataForm
     }
-    
+
     return getData
   } catch (error) {
     console.log("Algo de erado: ", error)

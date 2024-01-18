@@ -42,49 +42,106 @@
     <div class="card card-body mt-5">
       <section>
         <div>
-          <h1>Cadastrar de Patrimônios</h1>
+          <h1>Cadastro de Patrimônios</h1>
           <hr />
         </div>
       </section>
 
       <section>
-        <form>
-          <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label"
-              >Email address</label
-            >
-            <input
-              type="email"
-              class="form-control"
-              id="exampleInputEmail1"
-              aria-describedby="emailHelp"
-            />
-            <div id="emailHelp" class="form-text">
-              We'll never share your email with anyone else.
+        <div class="modal-body">
+          <form class="row g-3">
+            <div class="col-md-6">
+              <label for="inputSector" class="form-label">Setor:</label>
+              <select
+                class="form-select form-select-lg"
+                aria-label="Seleciona um Setor"
+                id="inputSector"
+                required
+              >
+                <option selected>Seleciona um Setor</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
             </div>
-          </div>
-          <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label"
-              >Password</label
-            >
-            <input
-              type="password"
-              class="form-control"
-              id="exampleInputPassword1"
-            />
-          </div>
-          <div class="mb-3 form-check">
-            <input
-              type="checkbox"
-              class="form-check-input"
-              id="exampleCheck1"
-            />
-            <label class="form-check-label" for="exampleCheck1"
-              >Check me out</label
-            >
-          </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+
+            <div class="col-md-6">
+              <label for="inputNumberPatrimony" class="form-label"
+                >Número Do Patrimônio:</label
+              >
+              <input
+                type="number"
+                class="form-control"
+                id="inputNumberPatrimony"
+                required
+              />
+            </div>
+
+            <div class="col-12">
+              <label for="inputDescription" class="form-label"
+                >Descrição:</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="inputDescription"
+                placeholder="Descrição do Patrimônio"
+                required
+              />
+            </div>
+
+            <div class="col-md-6">
+              <label for="inputUnitDeliveryDate" class="form-label"
+                >Data de Entrega na Unidade:</label
+              >
+              <input
+                type="date"
+                class="form-control"
+                id="inputUnitDeliveryDate"
+                required
+              />
+            </div>
+
+            <div class="col-md-6">
+              <label for="inputPreviousSector" class="form-label"
+                >Setor Anterior:</label
+              >
+
+              <select
+                class="form-select form-select-lg"
+                id="inputPreviousSector"
+                aria-label="Seleciona o Setor Anterior"
+              >
+                <option selected>Seleciona o Setor Anterior</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+            </div>
+
+            <div class="col-md-6">
+              <label for="inputTransferDate" class="form-label"
+                >Data de Transferência:</label
+              >
+              <input type="date" class="form-control" id="inputTransferDate" />
+            </div>
+
+            <div class="col-md-6">
+              <label for="inputDestinationLocation" class="form-label"
+                >Localização de Destino:</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="inputDestinationLocation"
+              />
+            </div>
+
+            <div class="col-12">
+              <button id="register" type="submit" class="btn btn-success bnt-submit">Cadastrar</button>
+            </div>
+          </form>
+        </div>
       </section>
     </div>
   </body>
