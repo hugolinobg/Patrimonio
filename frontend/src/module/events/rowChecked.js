@@ -22,32 +22,16 @@ async function rowChecked() {
 
       let tr = document.getElementById(`${idList}`)
 
-      // document.addEventListener(
-      //   "change",
-      //   (event) => {
-      //     let inputCheckedStorage = localStorage.getItem(inputChecked.id)
+      let inputCheckedStorage = ""
+      inputChecked.addEventListener("change", () => {
+        localStorage.setItem(inputChecked.id, inputChecked.checked)
 
-      //     inputCheckedStorage === inputChecked.checked
-      //       ? tr.classList.add("table-success")
-      //       : tr.classList.remove("table-success")
-      //   },
-      //   false
-      // )
+        inputCheckedStorage = JSON.parse(localStorage.getItem(inputChecked.id))
 
-        inputChecked.addEventListener("change", () => {
-          let inputCheckedStorage = ""
-          localStorage.setItem(inputChecked.id, inputChecked.checked)
-
-          inputCheckedStorage = localStorage.getItem(
-            inputChecked.id
-          )
-
-          console.log(inputCheckedStorage)
-
-          inputCheckedStorage == inputChecked.checked
-            ? tr.classList.add("table-success")
-            : tr.classList.remove("table-success")
-        })
+        inputCheckedStorage === inputChecked.checked
+          ? tr.classList.add("table-success")
+          : tr.classList.remove("table-success")
+      })
 
       // inputChecked.addEventListener("change", () => {
       //   localStorage.setItem(
