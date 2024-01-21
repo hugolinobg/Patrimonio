@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tabela com Edição</title>
+    <style>
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+      }
+
+      th {
+        background-color: #f2f2f2;
+      }
+
+      .modal {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 20px;
+        background-color: #fff;
+        z-index: 1;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .modal input {
+        width: 100%;
+        margin-bottom: 10px;
+        padding: 8px;
+      }
+
+      .modal button {
+        padding: 8px 16px;
+        background-color: #4caf50;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <table id="myTable">
+      <thead>
+        <tr>
+          <th>Coluna 1</th>
+          <th>Coluna 2</th>
+          <th>Coluna 3</th>
+          <th>Coluna 4</th>
+          <th>Coluna 5</th>
+          <th>Coluna 6</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Linha 1 -->
+        <tr>
+          <td>Dado 1.1</td>
+          <td>Dado 1.2</td>
+          <td>Dado 1.3</td>
+          <td>Dado 1.4</td>
+          <td>Dado 1.5</td>
+          <td>Dado 1.6</td>
+          <td><button onclick="editarLinha(1)">Editar</button></td>
+        </tr>
+        <!-- Linha 2 -->
+        <tr>
+          <td>Dado 2.1</td>
+          <td>Dado 2.2</td>
+          <td>Dado 2.3</td>
+          <td>Dado 2.4</td>
+          <td>Dado 2.5</td>
+          <td>Dado 2.6</td>
+          <td><button onclick="editarLinha(2)">Editar</button></td>
+        </tr>
+        <!-- Adicione mais linhas conforme necessário -->
+      </tbody>
+    </table>
+
+    <div id="myModal" class="modal">
+      <h2>Editar Dados</h2>
+      <input type="text" id="input1" placeholder="Novo Dado 1" />
+      <input type="text" id="input2" placeholder="Novo Dado 2" />
+      <input type="text" id="input3" placeholder="Novo Dado 3" />
+      <input type="text" id="input4" placeholder="Novo Dado 4" />
+      <input type="text" id="input5" placeholder="Novo Dado 5" />
+      <input type="text" id="input6" placeholder="Novo Dado 6" />
+      <button onclick="salvarEdicao()">Salvar</button>
+    </div>
+
+    <script>
+      let currentRow
+
+      function editarLinha(row) {
+        currentRow = row
+        const table = document.getElementById("myTable")
+        const cells = table.rows[row].cells
+
+        document.getElementById("input1").value = cells[0].innerHTML
+        document.getElementById("input2").value = cells[1].innerHTML
+        document.getElementById("input3").value = cells[2].innerHTML
+        document.getElementById("input4").value = cells[3].innerHTML
+        document.getElementById("input5").value = cells[4].innerHTML
+        document.getElementById("input6").value = cells[5].innerHTML
+
+        document.getElementById("myModal").style.display = "block"
+      }
+
+      function salvarEdicao() {
+        const table = document.getElementById("myTable")
+        const cells = table.rows[currentRow].cells
+
+        cells[0].innerHTML = document.getElementById("input1").value
+        cells[1].innerHTML = document.getElementById("input2").value
+        cells[2].innerHTML = document.getElementById("input3").value
+        cells[3].innerHTML = document.getElementById("input4").value
+        cells[4].innerHTML = document.getElementById("input5").value
+        cells[5].innerHTML = document.getElementById("input6").value
+
+        document.getElementById("myModal").style.display = "none"
+      }
+    </script>
+  </body>
+</html>
