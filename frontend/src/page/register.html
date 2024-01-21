@@ -34,8 +34,8 @@
     ></script>
 
     <script src="https://unpkg.com/phosphor-icons" defer></script>
+    <script type="module" src="../module/events/register.js" defer></script>
 
-    <script type="module" src="../js/app.js" defer></script>
     <title>Cadastrar de Patrimônios</title>
   </head>
   <body class="container">
@@ -52,17 +52,13 @@
           <form class="row g-3">
             <div class="col-md-6">
               <label for="inputSector" class="form-label">Setor:</label>
-              <select
-                class="form-select form-select-lg"
-                aria-label="Seleciona um Setor"
+
+              <input
+                type="text"
+                class="form-control"
                 id="inputSector"
                 required
-              >
-                <option selected>Seleciona um Setor</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </select>
+              />
             </div>
 
             <div class="col-md-6">
@@ -106,17 +102,12 @@
               <label for="inputPreviousSector" class="form-label"
                 >Setor Anterior:</label
               >
-
-              <select
-                class="form-select form-select-lg"
+              <input
+                type="text"
+                class="form-control"
                 id="inputPreviousSector"
-                aria-label="Seleciona o Setor Anterior"
-              >
-                <option selected>Seleciona o Setor Anterior</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </select>
+                required
+              />
             </div>
 
             <div class="col-md-6">
@@ -138,7 +129,13 @@
             </div>
 
             <div class="col-12">
-              <button id="register" type="submit" class="btn btn-success bnt-submit">Cadastrar</button>
+              <button
+                id="btnRegister"
+                type="submit"
+                class="btn btn-success bnt-submit"
+              >
+                Cadastrar
+              </button>
             </div>
           </form>
         </div>

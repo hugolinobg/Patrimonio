@@ -1,7 +1,9 @@
 import handlePageLoaded from "../module/events/handlePageLoaded.js"
-import Search from "../module/events/search.js"
+// import search from "../module/events/search.js"
+// import register from "../module/events/register.js"
 // import updateRegister from "../module/events/updateRegister.js"
 
 handlePageLoaded()
-Search()
+// search()
+// register()
 // updateRegister()

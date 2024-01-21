@@ -1,7 +1,6 @@
-import { urlPatrimony, tableLists, exampleModal } from "../elements/Elements.js"
+import { urlPatrimony, tableLists } from "../elements/Elements.js"
 import rowChecked from "../events/rowChecked.js"
-
-let list = ""
+import search from "../events/search.js"
 
 async function handlePageLoaded() {
   try {
@@ -12,10 +11,11 @@ async function handlePageLoaded() {
     }
 
     const patrimoniesApiResults = await response.json()
+    let list = ""
 
     patrimoniesApiResults.forEach((patrimony) => {
       list += `
-        <tr id=${patrimony._id}>
+        <tr>
               <td data-sector=${patrimony._id}>${
         patrimony.sector === null ? "" : patrimony.sector
       }</td>
@@ -41,10 +41,8 @@ async function handlePageLoaded() {
       }</td>
               <td>
                 <div class="form-check form-switch">
-                  <input data-checked=${patrimony._id} id=${
-        patrimony._id
-      } class="form-check-input" name="checkbox" type="checkbox" role="switch" 
-                  >
+                  <input id=${patrimony._id} class="form-check-input" 
+                      type="checkbox" role="switch">
                   <label class="form-check-label" for="${patrimony._id}">
                   Verificado</label>
                 </div>
@@ -115,6 +113,7 @@ async function handlePageLoaded() {
 
     rowChecked()
     tableLists.innerHTML = list
+    search()
   } catch (error) {
     console.log("Algo de erado: ", error)
   }
@@ -124,26 +123,26 @@ async function handlePageLoaded() {
 //  console.log('oii2')
 // }
 
-if (exampleModal) {
-  ;(" ")
-}
-{
-  exampleModal.addEventListener("show.bs.modal", (event) => {
-    // Button that triggered the modal
-    const button = event.relatedTarget
-    // Extract info from data-bs-* attributes
-    const recipient = button.getAttribute("data-bs-whatever")
+// if (exampleModal) {
+//   ;(" ")
+// }
+// {
+//   exampleModal.addEventListener("show.bs.modal", (event) => {
+//     // Button that triggered the modal
+//     const button = event.relatedTarget
+//     // Extract info from data-bs-* attributes
+//     const recipient = button.getAttribute("data-bs-whatever")
 
-    // If necessary, you could initiate an Ajax request here
-    // and then do the updating in a callback.
+//     // If necessary, you could initiate an Ajax request here
+//     // and then do the updating in a callback.
 
-    // Update the modal's content.
-    const modalTitle = exampleModal.querySelector(".modal-title")
-    const modalBodyInput = exampleModal.querySelector(".modal-body input")
+//     // Update the modal's content.
+//     const modalTitle = exampleModal.querySelector(".modal-title")
+//     const modalBodyInput = exampleModal.querySelector(".modal-body input")
 
-    modalTitle.textContent = `Editar Dados ${recipient}`
-    modalBodyInput.value = recipient
-  })
-}
+//     modalTitle.textContent = `Editar Dados ${recipient}`
+//     modalBodyInput.value = recipient
+//   })
+// }
 
 export default handlePageLoaded
