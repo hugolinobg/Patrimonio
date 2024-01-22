@@ -80,7 +80,7 @@
         </table>
       </section>
 
-      <!-- <section>
+      <section>
         <div
           class="modal fade"
           id="exampleModal"
@@ -105,69 +105,89 @@
               <div class="modal-body">
                 <form>
                   <div class="mb-3">
-                    <label for="setor" class="col-form-label">Setor:</label>
-                    <input type="text" class="form-control" id="setor" />
+                    <label for="modalInputSector" class="col-form-label"
+                      >Setor:</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="modalInputSector"
+                      required
+                    />
                   </div>
 
                   <div class="mb-3">
-                    <label for="numeroDoPatrimônio" class="col-form-label"
+                    <label
+                      for="modalInputNumberPatrimony"
+                      class="col-form-label"
                       >Número do Patrimônio:</label
                     >
                     <input
                       type="number"
                       class="form-control"
-                      id="numeroDoPatrimônio"
+                      id="modalInputNumberPatrimony"
+                      required
                     />
                   </div>
 
                   <div class="mb-3">
-                    <label for="descricao" class="col-form-label"
+                    <label for="modalInputDescription" class="col-form-label"
                       >Descrição:</label
                     >
-                    <input type="text" class="form-control" id="descricao" />
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="modalInputDescription"
+                      required
+                    />
                   </div>
 
                   <div class="mb-3">
-                    <label for="numeroDoPatrimonio" class="col-form-label"
+                    <label
+                      for="modalInputUnitDeliveryDate"
+                      class="col-form-label"
                       >Data de Entrega na Unidade:</label
                     >
                     <input
                       type="date"
                       class="form-control"
-                      id="numeroDoPatrimonio"
+                      id="modalInputUnitDeliveryDate"
+                      required
                     />
                   </div>
 
                   <div class="mb-3">
-                    <label for="setorAnterior" class="col-form-label"
+                    <label for="modalInputPreviousSector" class="col-form-label"
                       >Setor Anterior:</label
                     >
                     <input
                       type="text"
                       class="form-control"
-                      id="setorAnterior"
+                      id="modalInputPreviousSector"
                     />
                   </div>
 
                   <div class="mb-3">
-                    <label for="dataDeTransferencia" class="col-form-label"
+                    <label for="modalInputTransferDate" class="col-form-label"
                       >Data de Transferência:</label
                     >
                     <input
                       type="date"
                       class="form-control"
-                      id="dataDeTransferencia"
+                      id="modalInputTransferDate"
                     />
                   </div>
 
                   <div class="mb-3">
-                    <label for="localizacaoDeDestino" class="col-form-label"
+                    <label
+                      for="modalInputDestinationLocation"
+                      class="col-form-label"
                       >Localização de Destino:</label
                     >
                     <input
                       type="text"
                       class="form-control"
-                      id="localizacaoDeDestino"
+                      id="modalInputDestinationLocation"
                     />
                   </div>
                 </form>
@@ -180,14 +200,18 @@
                 >
                   Fechar
                 </button>
-                <button id="save" type="button" class="btn btn-success">
+                <button
+                  id="btnUpdate"
+                  type="submit"
+                  class="btn btn-success"
+                >
                   Salvar Dados
                 </button>
               </div>
             </div>
           </div>
         </div>
-      </section> -->
+      </section>
     </div>
   </body>
 </html>

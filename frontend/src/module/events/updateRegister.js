@@ -1,61 +1,93 @@
-// import { urlPatrimony } from "../elements/Elements.js"
+import {
+  urlPatrimony,
+  inputSector,
+  inputNumberPatrimony,
+  inputDescription,
+  inputUnitDeliveryDate,
+  inputPreviousSector,
+  inputTransferDate,
+  inputDestinationLocation,
+  btnRegister,
+} from "../elements/Elements.js"
 
-// async function updateRegister() {
-//   try {
-//     const response = await fetch(urlPatrimony)
+btnRegister.addEventListener("click", register)
 
-//     if (!response.ok) {
-//       throw Error("Não foi possível obter as informações!")
-//     }
+function register(e) {
+  e.preventDefault()
+  //capturar dados do formulário
+  const data = getDataForm()
 
-//     const patrimoniesApiResults = await response.json()
+  //enviar os dados para api
+  submitDataApi(data)
+}
 
-//     let elemento = patrimoniesApiResults.map((id) => {
-//       return id._id
-//     })
+function getDataForm() {
+  if (
+    inputSector.value === "" ||
+    inputNumberPatrimony.value === "" ||
+    inputDescription.value === "" ||
+    inputUnitDeliveryDate.value === ""
+  ) {
+    alert("Preencha todos os campos!")
+    return
+  }
 
-//     let getData = []
+  let dateInputUnitDelivery = inputUnitDeliveryDate.value
+  let dateInputTransfer = inputTransferDate.value
 
-//     for (let idElemento in elemento) {
-//       let idList = `${elemento[idElemento]}`
+  let dateUnitDelivery = new Date(dateInputUnitDelivery)
+  let dateTransfer = new Date(dateInputTransfer)
+  let dateUnitDeliveryPtBr = dateUnitDelivery.toLocaleDateString("pt-BR", {
+    timeZone: "UTC",
+  })
+  let dateTransferPtBr = dateTransfer.toLocaleDateString("pt-BR", {
+    timeZone: "UTC",
+  })
 
-//       let id = document.getElementById(`${idList}`)
-//       let sector = document.querySelector(`[data-sector="${idList}"]`)
-//       let numberPatrimony = document.querySelector(
-//         `[data-numberPatrimony="${idList}"]`
-//       )
-//       let description = document.querySelector(`[data-description="${idList}"]`)
-//       let unitDeliveryDate = document.querySelector(
-//         `[data-unitDeliveryDate="${idList}"]`
-//       )
-//       let previousSector = document.querySelector(
-//         `[data-previousSector="${idList}"]`
-//       )
-//       let destinationLocation = document.querySelector(
-//         `[data-destinationLocation="${idList}"]`
-//       )
-//       let transferDate = document.querySelector(
-//         `[data-transferDate="${idList}"]`
-//       )
+  const dataForm = {
+    sector: inputSector.value,
+    numberPatrimony: inputNumberPatrimony.value,
+    description: inputDescription.value,
+    unitDeliveryDate: dateUnitDeliveryPtBr,
+    previousSector: inputPreviousSector.value,
+    transferDate: dateTransferPtBr,
+    destinationLocation: inputDestinationLocation.value,
+  }
 
-//       let dataForm = {
-//         id: id.id,
-//         sector: sector.innerText,
-//         numberPatrimony: numberPatrimony.innerText,
-//         description: description.innerText,
-//         unitDeliveryDate: unitDeliveryDate.innerText,
-//         previousSector: previousSector.innerText,
-//         destinationLocation: destinationLocation.innerText,
-//         transferDate: transferDate.innerText,
-//       }
+  return dataForm
+}
 
-//       getData = dataForm
-//     }
+async function submitDataApi(dataForm) {
+  try {
+    const res = await fetch(urlPatrimony, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(dataForm),
+    })
 
-//     return getData
-//   } catch (error) {
-//     console.log("Algo de erado: ", error)
-//   }
+    if (res.status === 201) {
+      alert("Cadastro atualizado consucesso!")
+
+      setTimeout(() => {
+        window.location.href = "home.html"
+      }, "700")
+    } else {
+      alert("Erro na hora de atualizado o cadastro!")
+    }
+  } catch (erro) {
+    console.log(erro)
+  }
+}
+
+// function clearField() {
+//   inputSector.value = ""
+//   inputNumberPatrimony.value = ""
+//   inputDescription.value = ""
+//   inputUnitDeliveryDate.value = ""
+//   inputPreviousSector.value = ""
+//   inputTransferDate.value = ""
+//   inputDestinationLocation.value = ""
 // }
-
-// export default updateRegister

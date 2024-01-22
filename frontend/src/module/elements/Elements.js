@@ -3,6 +3,7 @@
 export const urlPatrimony = "http://localhost:3000/api/patrimony"
 
 export const inputSearch = document.getElementById("inputSearch")
+export const myTable = document.getElementById("myTable")
 export const tableLists = document.getElementById("tableLists")
 export const fragment = document.createDocumentFragment()
 export const exampleModal = document.getElementById("exampleModal")

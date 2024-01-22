@@ -1,4 +1,4 @@
-// import { urlPatrimony } from "../elements/Elements.js"
+import { myTable } from "../elements/Elements.js"
 
 document.addEventListener("DOMContentLoaded", rowChecked)
 
@@ -7,17 +7,15 @@ function rowChecked() {
   loadCheckboxStatus()
 
   // Add click event listener to the table
-  document
-    .getElementById("myTable")
-    .addEventListener("change", function (event) {
-      if (event.target.type === "checkbox") {
-        // Toggle the class on the parent row when the checkbox is clicked
-        event.target.closest("tr").classList.toggle("table-success")
+  myTable.addEventListener("change", function (event) {
+    if (event.target.type === "checkbox") {
+      // Toggle the class on the parent row when the checkbox is clicked
+      event.target.closest("tr").classList.toggle("table-success")
 
-        // Save checkbox status to localStorage
-        saveCheckboxStatus()
-      }
-    })
+      // Save checkbox status to localStorage
+      saveCheckboxStatus()
+    }
+  })
 }
 
 function saveCheckboxStatus() {
