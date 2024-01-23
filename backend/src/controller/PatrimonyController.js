@@ -68,7 +68,7 @@ class PatrimonyController {
         destinationLocation,
       })
 
-      return res.status(200).json(patrimony)
+      return res.status(201).json(patrimony)
     } catch (error) {
       return res.status(500).json({
         error: "Something wrong happend, try again",

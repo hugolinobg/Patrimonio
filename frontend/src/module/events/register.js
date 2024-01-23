@@ -32,11 +32,9 @@ function getDataForm() {
     return
   }
 
-  let dateInputUnitDelivery = inputUnitDeliveryDate.value
-  let dateInputTransfer = inputTransferDate.value
+  let dateUnitDelivery = new Date(inputUnitDeliveryDate.value)
+  let dateTransfer = new Date(inputTransferDate.value)
 
-  let dateUnitDelivery = new Date(dateInputUnitDelivery)
-  let dateTransfer = new Date(dateInputTransfer)
   let dateUnitDeliveryPtBr = dateUnitDelivery.toLocaleDateString("pt-BR", {
     timeZone: "UTC",
   })
@@ -76,7 +74,7 @@ async function submitDataApi(dataForm) {
         window.location.href = "home.html"
       }, "700")
     } else {
-      alert("Erro na hora do cadastro!")
+      alert("Erro no cadastro!")
     }
   } catch (erro) {
     console.log(erro)
