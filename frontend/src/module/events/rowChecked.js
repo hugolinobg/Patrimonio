@@ -1,4 +1,4 @@
-import { myTable } from "../elements/Elements.js"
+import { myTable, checkboxes } from "../elements/Elements.js"
 
 document.addEventListener("DOMContentLoaded", rowChecked)
 
@@ -7,7 +7,7 @@ function rowChecked() {
   loadCheckboxStatus()
 
   // Add click event listener to the table
-  myTable.addEventListener("change", function (event) {
+  myTable.addEventListener("click", function (event) {
     if (event.target.type === "checkbox") {
       // Toggle the class on the parent row when the checkbox is clicked
       event.target.closest("tr").classList.toggle("table-success")
@@ -20,9 +20,6 @@ function rowChecked() {
 
 function saveCheckboxStatus() {
   // Get all checkboxes and their status
-  const checkboxes = document.querySelectorAll(
-    "#myTable tbody input[type=checkbox]"
-  )
   const checkboxStatus = {}
 
   checkboxes.forEach((checkbox, index) => {

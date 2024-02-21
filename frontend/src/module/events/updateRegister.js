@@ -1,18 +1,19 @@
 import {
   urlPatrimony,
-  inputSector,
-  inputNumberPatrimony,
-  inputDescription,
-  inputUnitDeliveryDate,
-  inputPreviousSector,
-  inputTransferDate,
-  inputDestinationLocation,
-  btnRegister,
+  modalId,
+  modalInputSector,
+  modalInputNumberPatrimony,
+  modalInputDescription,
+  modalInputUnitDeliveryDate,
+  modalInputPreviousSector,
+  modalInputTransferDate,
+  modalInputDestinationLocation,
+  btnUpdate,
 } from "../elements/Elements.js"
 
-btnRegister.addEventListener("click", register)
+btnUpdate.addEventListener("click", updateRegister)
 
-function register(e) {
+function updateRegister(e) {
   e.preventDefault()
   //capturar dados do formulário
   const data = getDataForm()
@@ -23,20 +24,19 @@ function register(e) {
 
 function getDataForm() {
   if (
-    inputSector.value === "" ||
-    inputNumberPatrimony.value === "" ||
-    inputDescription.value === "" ||
-    inputUnitDeliveryDate.value === ""
+    modalInputSector.value === "" ||
+    modalInputNumberPatrimony.value === "" ||
+    modalInputDescription.value === "" ||
+    modalInputUnitDeliveryDate.value === "" ||
+    modalInputPreviousSector.value === ""
   ) {
     alert("Preencha todos os campos!")
     return
   }
 
-  let dateInputUnitDelivery = inputUnitDeliveryDate.value
-  let dateInputTransfer = inputTransferDate.value
+  let dateUnitDelivery = new Date(modalInputUnitDeliveryDate.value)
+  let dateTransfer = new Date(modalInputTransferDate.value)
 
-  let dateUnitDelivery = new Date(dateInputUnitDelivery)
-  let dateTransfer = new Date(dateInputTransfer)
   let dateUnitDeliveryPtBr = dateUnitDelivery.toLocaleDateString("pt-BR", {
     timeZone: "UTC",
   })
@@ -45,13 +45,13 @@ function getDataForm() {
   })
 
   const dataForm = {
-    sector: inputSector.value,
-    numberPatrimony: inputNumberPatrimony.value,
-    description: inputDescription.value,
+    sector: modalInputSector.value,
+    numberPatrimony: modalInputNumberPatrimony.value,
+    description: modalInputDescription.value,
     unitDeliveryDate: dateUnitDeliveryPtBr,
-    previousSector: inputPreviousSector.value,
+    previousSector: modalInputPreviousSector.value,
     transferDate: dateTransferPtBr,
-    destinationLocation: inputDestinationLocation.value,
+    destinationLocation: modalInputDestinationLocation.value,
   }
 
   return dataForm
@@ -59,8 +59,8 @@ function getDataForm() {
 
 async function submitDataApi(dataForm) {
   try {
-    const res = await fetch(urlPatrimony, {
-      method: "POST",
+    const res = await fetch(`${urlPatrimony}/:${modalId}`, {
+      method: "PUT",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",

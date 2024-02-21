@@ -92,7 +92,7 @@
             <div class="modal-content">
               <div class="modal-header">
                 <h1 class="modal-title fs-5" id="exampleModalLabel">
-                  Editar Dados
+                  Editar Patrimônio
                 </h1>
                 <button
                   type="button"
@@ -104,6 +104,14 @@
 
               <div class="modal-body">
                 <form>
+                  <div>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="modalInputId"
+                      disabled
+                    />
+                  </div>
                   <div class="mb-3">
                     <label for="modalInputSector" class="col-form-label"
                       >Setor:</label
@@ -123,7 +131,7 @@
                       >Número do Patrimônio:</label
                     >
                     <input
-                      type="number"
+                      type="text"
                       class="form-control"
                       id="modalInputNumberPatrimony"
                       required
@@ -149,9 +157,10 @@
                       >Data de Entrega na Unidade:</label
                     >
                     <input
-                      type="date"
+                      type="text"
                       class="form-control"
                       id="modalInputUnitDeliveryDate"
+                      placeholder="26/09/2022"
                       required
                     />
                   </div>
@@ -164,6 +173,7 @@
                       type="text"
                       class="form-control"
                       id="modalInputPreviousSector"
+                      required
                     />
                   </div>
 
@@ -172,9 +182,10 @@
                       >Data de Transferência:</label
                     >
                     <input
-                      type="date"
+                      type="text"
                       class="form-control"
                       id="modalInputTransferDate"
+                      placeholder="26/09/2023"
                     />
                   </div>
 
@@ -192,6 +203,7 @@
                   </div>
                 </form>
               </div>
+
               <div class="modal-footer">
                 <button
                   type="button"
@@ -200,11 +212,8 @@
                 >
                   Fechar
                 </button>
-                <button
-                  id="btnUpdate"
-                  type="submit"
-                  class="btn btn-success"
-                >
+
+                <button id="btnUpdate" type="submit" class="btn btn-success">
                   Salvar Dados
                 </button>
               </div>

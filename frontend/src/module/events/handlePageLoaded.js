@@ -1,4 +1,17 @@
-import { urlPatrimony, tableLists } from "../elements/Elements.js"
+import {
+  urlPatrimony,
+  tableLists,
+  myTable,
+  modalId,
+  modalInputSector,
+  modalInputNumberPatrimony,
+  modalInputDescription,
+  modalInputUnitDeliveryDate,
+  modalInputPreviousSector,
+  modalInputTransferDate,
+  modalInputDestinationLocation,
+  btnModalUpdateRegister,
+} from "../elements/Elements.js"
 import rowChecked from "../events/rowChecked.js"
 import search from "../events/search.js"
 
@@ -58,14 +71,12 @@ async function handlePageLoaded() {
           <td>
             <button
               type="button"
-              onclick="updateRegister(${index})"
+              onclick="modalUpdateRegister('[${index}, ${patrimony._id}]')"
               class="btn btn-sm btn-outline-primary"
               data-bs-toggle="modal"
               data-bs-target="#exampleModal"
-              data-bs-whatever="@mdo"
             >Editar</button>
           </td>
-
         </tr>
       `
     })
@@ -128,41 +139,21 @@ async function handlePageLoaded() {
   }
 }
 
-function updateRegister(row) {
-  currentRow = row
-  const table = document.getElementById("myTable")
+function modalUpdateRegister({ row, id }) {
+  // let currentRow = row
+
+  console.log(row, id)
+  const table = myTable
   const cells = table.rows[row].cells
 
-  document.getElementById("input1").value = cells[0].innerHTML
-  document.getElementById("input2").value = cells[1].innerHTML
-  document.getElementById("input3").value = cells[2].innerHTML
-  document.getElementById("input4").value = cells[3].innerHTML
-  document.getElementById("input5").value = cells[4].innerHTML
-  document.getElementById("input6").value = cells[5].innerHTML
-
-  document.getElementById("myModal").style.display = "block"
-}
-
-if (exampleModal) {
-  ;(" ")
-}
-{
-  exampleModal.addEventListener("show.bs.modal", (event) => {
-    // Button that triggered the modal
-    const button = event.relatedTarget
-    // Extract info from data-bs-* attributes
-    const recipient = button.getAttribute("data-bs-whatever")
-
-    // If necessary, you could initiate an Ajax request here
-    // and then do the updating in a callback.
-
-    // Update the modal's content.
-    const modalTitle = exampleModal.querySelector(".modal-title")
-    const modalBodyInput = exampleModal.querySelector(".modal-body input")
-
-    modalTitle.textContent = `Editar Dados ${recipient}`
-    modalBodyInput.value = recipient
-  })
+  modalId.value = id.innerHTML
+  modalInputSector.value = cells[0].innerHTML
+  modalInputNumberPatrimony.value = cells[1].innerHTML
+  modalInputDescription.value = cells[2].innerHTML
+  modalInputUnitDeliveryDate.value = cells[3].innerHTML
+  modalInputPreviousSector.value = cells[4].innerHTML
+  modalInputTransferDate.value = cells[5].innerHTML
+  modalInputDestinationLocation.value = cells[6].innerHTML
 }
 
 export default handlePageLoaded
