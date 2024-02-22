@@ -16,25 +16,25 @@
   font-synthesis: none;
   text-rendering: optimizeLegibility;
 
-  --bg-color-light: #f0f0f0;
+  --bg-color-light: #f9f9f9;
   --bg-color-dark: #1a1924;
 
   --color-light: #f0f0f0;
   --color-dark: #1a1924;
 
   --bs-table-color: #fff;
-  --bs-table-bg-light: #f9f9f9;
+  --bs-table-bg-light: #f0f0f0;
   --bs-table-bg-dark: #212529;
-  --bs-table-color-type-light: #f9f9f9;
+  --bs-table-color-type-light: #f0f0f0;
   --bs-table-color-type-dark: #212529;
   --bs-table-border-color: #4d5154;
   --bs-table-striped-bg: #2c3034;
   --bs-btn-color: #2c3034;
-  --bs-table-striped-color: #f9f9f9;
+  --bs-table-striped-color: #f0f0f0;
   --bs-table-active-bg: #373b3e;
-  --bs-table-active-color: #f9f9f9;
+  --bs-table-active-color: #f0f0f0;
   --bs-table-hover-bg: #323539;
-  --bs-table-hover-color: #f9f9f9;
+  --bs-table-hover-color: #f0f0f0;
 
   --color-scrollbar-track: #1a1924;
   --color-scrollbar-thumb: #282843;
@@ -115,5 +115,16 @@ body {
 
   .table-bordered > :not(caption) > * > * {
     border-width: 0;
+  }
+}
+
+@media screen and (min-width: 1500px) {
+  .container,
+  .container-lg,
+  .container-md,
+  .container-sm,
+  .container-xl,
+  .container-xxl {
+    max-width: 1450px !important;
   }
 }

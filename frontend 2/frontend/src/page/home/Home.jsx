@@ -1,13 +1,26 @@
 import { useEffect, useState } from "react"
 import Table from "react-bootstrap/Table"
-import Button from "react-bootstrap/Button"
+import Container from "react-bootstrap/Container"
+import Form from "react-bootstrap/Form"
+import InputGroup from "react-bootstrap/InputGroup"
 import ToggleButton from "react-bootstrap/ToggleButton"
+import Button from "react-bootstrap/Button"
+
 import api from "../../services/api.jsx"
 import "./Home.css"
 
 function Home() {
   const [patrimonys, setPatrimonys] = useState([])
+  const [search, setSearch] = useState("")
   const [checked, setChecked] = useState(false)
+
+  console.log(search)
+
+  // console.log(
+  //   patrimonys.filter((patrimony) =>
+  //     patrimony.sector.toLowerCase().includes(patrimonys)
+  //   )
+  // )
 
   useEffect(() => {
     api
@@ -21,16 +34,24 @@ function Home() {
   })
   return (
     <>
-      <div className="container">
-        <div className="title">
-          <h1>Gerenciamento de Patrimônios</h1>
-        </div>
-        <div>
+      <div className="App">
+        <Container>
+          <h1 className="text-center mt-4">Gerenciamento de Patrimônios</h1>
+
+          <Form>
+            <InputGroup className="inputGroup my-4">
+              <Form.Control
+                onChange={(e) => setSearch(e.target.value)}
+                placeholder="Search..."
+              />
+              <Button variant="outline-primary">Cadastar</Button>
+            </InputGroup>
+          </Form>
           <Table
-            className="table"
+            // className="table"
             striped
             bordered
-            hover
+            // hover
             variant="dark"
             responsive
           >
@@ -48,78 +69,90 @@ function Home() {
               </tr>
             </thead>
             <tbody>
-              {patrimonys.map((patrimony) => {
-                return (
-                  <tr key={patrimony._id}>
-                    <td>{patrimony.sector === null ? "" : patrimony.sector}</td>
-                    <td>
-                      {patrimony.numberPatrimony === null
-                        ? ""
-                        : patrimony.numberPatrimony}
-                    </td>
-                    <td>
-                      {patrimony.description === null
-                        ? ""
-                        : patrimony.description}
-                    </td>
-                    <td>
-                      {patrimony.unitDeliveryDate === null
-                        ? ""
-                        : patrimony.unitDeliveryDate}
-                    </td>
-                    <td>
-                      {patrimony.previousSector === null
-                        ? ""
-                        : patrimony.previousSector}
-                    </td>
-                    <td>
-                      {patrimony.destinationLocation === null
-                        ? ""
-                        : patrimony.destinationLocation}
-                    </td>
-                    <td>
-                      {patrimony.transferDate === null
-                        ? ""
-                        : patrimony.transferDate}
-                    </td>
-                    <td>
-                      <input
-                        id={patrimony._id}
-                        className="form-check-input"
-                        type="checkbox"
-                        role="switch"
-                      />
+              {patrimonys
+                .filter((item) => {
+                  return search.toLowerCase() === ""
+                    ? item
+                    : item.numberPatrimony.toString().includes(search) ||
+                        item.description.toLowerCase().includes(search) ||
+                        item.sector.toLowerCase().includes(search)
+                })
+                .map((item) => {
+                  return (
+                    <tr key={item._id}>
+                      <td>{item.sector === null ? "" : item.sector}</td>
+                      <td>
+                        {item.numberPatrimony === null
+                          ? ""
+                          : item.numberPatrimony}
+                      </td>
+                      <td>
+                        {item.description === null ? "" : item.description}
+                      </td>
+                      <td>
+                        {item.unitDeliveryDate === null
+                          ? ""
+                          : item.unitDeliveryDate}
+                      </td>
+                      <td>
+                        {item.previousSector === null
+                          ? ""
+                          : item.previousSector}
+                      </td>
+                      <td>
+                        {item.destinationLocation === null
+                          ? ""
+                          : item.destinationLocation}
+                      </td>
+                      <td>
+                        {item.transferDate === null ? "" : item.transferDate}
+                      </td>
+                      <td>
+                        <input
+                          id={item._id}
+                          className="form-check-input mb-3"
+                          type="checkbox"
+                          role="switch"
+                        />
 
-                      <ToggleButton
-                        id={patrimony._id}
-                        type="checkbox"
-                        checked={checked}
-                        value={checked}
-                        onChange={(e) => setChecked(e.currentTarget.checked)}
-                      >
-                        Verificado
-                      </ToggleButton>
-                    </td>
-                    <td>
-                      {
-                        <Button variant="outline-primary">Editar</Button>
+                        <ToggleButton
+                          id={item._id}
+                          type="checkbox"
+                          checked={checked}
+                          value={checked}
+                          onChange={(e) => setChecked(e.currentTarget.checked)}
+                        >
+                          Verificado
+                        </ToggleButton>
+                      </td>
+                      <td>
+                        {
+                          <Button variant="outline-primary">Editar</Button>
 
-                        // <button
-                        //   type="button"
-                        //   className="btn btn-sm btn-outline-primary"
-                        //   data-bs-toggle="modal"
-                        //   data-bs-target="#exampleModal"
-                        // >
-                        //   Editar
-                        // </button>
-                      }
-                    </td>
-                  </tr>
-                )
-              })}
+                          // <button
+                          //   type="button"
+                          //   className="btn btn-sm btn-outline-primary"
+                          //   data-bs-toggle="modal"
+                          //   data-bs-target="#exampleModal"
+                          // >
+                          //   Editar
+                          // </button>
+                        }
+                      </td>
+                    </tr>
+                  )
+                })}
             </tbody>
           </Table>
-        </div>
+        </Container>
+        {/* <div>
+          <input
+            type="search"
+            placeholder="Search..."
+            className="search"
+            onChange={(e) => setPatrimonys(e.target.value)}
+          />
+        </div> */}
       </div>
     </>
   )
