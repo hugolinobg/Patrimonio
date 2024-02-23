@@ -1,0 +1,16 @@
+.formRgt {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 3.5rem 0 3.5rem;
+  width: 778px;
+
+}
+
+@media screen and (max-width: 678px) {
+  .formRgt {
+    width: 399px;
+    padding: 0 2.2rem 0 2.2rem;
+    }
+  
+}

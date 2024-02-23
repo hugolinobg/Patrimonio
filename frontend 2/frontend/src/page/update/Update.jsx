@@ -4,9 +4,10 @@ import Form from "react-bootstrap/Form"
 import Button from "react-bootstrap/Button"
 import FormGroup from "react-bootstrap/esm/FormGroup"
 import api from "../../services/api"
-import "./Register.css"
+import "./Update.css"
 
-function Register() {
+
+function Update() {
   const navigate = useNavigate()
 
   const [sector, setSector] = useState("")
@@ -156,4 +157,4 @@ function Register() {
   )
 }
 
-export default Register
+export default Update
