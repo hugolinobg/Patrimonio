@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react"
-import { Link } from "react-router-dom"
-import Table from "react-bootstrap/Table"
-import Container from "react-bootstrap/Container"
+import { Link, useNavigate } from "react-router-dom"
 import Form from "react-bootstrap/Form"
 import InputGroup from "react-bootstrap/InputGroup"
 import Button from "react-bootstrap/Button"
@@ -10,6 +8,8 @@ import api from "../../services/api.jsx"
 import "./Home.css"
 
 function Home() {
+  const navigate = useNavigate()
+
   const [patrimonys, setPatrimonys] = useState([])
   const [search, setSearch] = useState("")
   // const [checked, setChecked] = useState(false)
@@ -40,10 +40,14 @@ function Home() {
       })
   })
 
+  function handleEdit() {
+    navigate("/edit")
+  }
+
   return (
     <>
-      <Container className="main">
-        <h1 className="text-center my-5">Gerenciamento de Patrimônios</h1>
+      <div className="main">
+        <h1>Gerenciamento de Patrimônios</h1>
         <hr />
 
         <Form>
@@ -58,20 +62,13 @@ function Home() {
           </InputGroup>
         </Form>
 
-        <Table
-          // className="table"
-          striped
-          bordered
-          // hover
-          variant="dark"
-          responsive
-        >
+        <table className="table">
           <thead>
             <tr>
               <th>Setor</th>
               <th>Nº do Patrimônio</th>
               <th>Descrição</th>
-              <th>Data de Entrega na Unidade</th>
+              <th>Data de Entrega na Unid.</th>
               <th>Setor Anterior</th>
               <th>Localização de Destino</th>
               <th>Data de Transferência</th>
@@ -130,15 +127,24 @@ function Home() {
                         checked={checkboxStatus[rowIndex] || false}
                         onChange={() => handleCheckboxChange(rowIndex)}
                       />
-                      <Form.Label for={item._id}>Verificado</Form.Label>
+                      <Form.Label htmlFor={item._id}>Verificado</Form.Label>
                     </td>
-                    <td>{<Button variant="outline-primary">Editar</Button>}</td>
+                    <td>
+                      {
+                        <Button
+                          variant="outline-primary"
+                          onClick={() => handleEdit()}
+                        >
+                          Editar
+                        </Button>
+                      }
+                    </td>
                   </tr>
                 )
               })}
           </tbody>
-        </Table>
-      </Container>
+        </table>
+      </div>
     </>
   )
 }

@@ -4,10 +4,10 @@ import Form from "react-bootstrap/Form"
 import Button from "react-bootstrap/Button"
 import FormGroup from "react-bootstrap/esm/FormGroup"
 import api from "../../services/api"
-import "./Update.css"
+import "./Edit.css"
 
+function Edit() {
 
-function Update() {
   const navigate = useNavigate()
 
   const [sector, setSector] = useState("")
@@ -73,8 +73,8 @@ function Update() {
 
   return (
     <>
-      <div className="container formRgt">
-        <h1 className="text-center my-5">Cadastro de Patrimônio</h1>
+      <div className="main formRgt">
+        <h1>Editar Patrimônio</h1>
         <hr />
 
         <Form className="form">
@@ -89,7 +89,7 @@ function Update() {
           </FormGroup>
 
           <FormGroup className="mb-3" controlId="formNumberPatrimony">
-            <Form.Label>Número Do Patrimônio:</Form.Label>
+            <Form.Label>Número do Patrimônio:</Form.Label>
             <Form.Control
               type="number"
               placeholder="175698"
@@ -149,7 +149,7 @@ function Update() {
             type="submit"
             onClick={handleSubmit}
           >
-            Cadastrar
+            Salvar
           </Button>
         </Form>
       </div>
@@ -157,4 +157,4 @@ function Update() {
   )
 }
 
-export default Update
+export default Edit

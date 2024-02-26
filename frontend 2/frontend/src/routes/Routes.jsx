@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 
 import Home from "../page/home/Home.jsx"
 import Register from "../page/register/Register.jsx"
-import Update from "../page/update/Update.jsx"
+import Edit from "../page/edit/Edit.jsx"
 
 function Router() {
   return (
@@ -10,7 +10,7 @@ function Router() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/update" element={<Update />} />
+        <Route path="/edit" element={<Edit />} />
       </Routes>
     </BrowserRouter>
   )

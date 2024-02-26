@@ -72,8 +72,8 @@ function Register() {
 
   return (
     <>
-      <div className="container formRgt">
-        <h1 className="text-center my-5">Cadastro de Patrimônio</h1>
+      <div className="main formRgt">
+        <h1>Cadastro de Patrimônio</h1>
         <hr />
 
         <Form className="form">
@@ -88,7 +88,7 @@ function Register() {
           </FormGroup>
 
           <FormGroup className="mb-3" controlId="formNumberPatrimony">
-            <Form.Label>Número Do Patrimônio:</Form.Label>
+            <Form.Label>Número do Patrimônio:</Form.Label>
             <Form.Control
               type="number"
               placeholder="175698"
