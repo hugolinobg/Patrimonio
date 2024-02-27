@@ -144,7 +144,8 @@ function Register() {
 
           <Button
             className="mt-5"
-            variant="outline-primary"
+            variant="outline-success"
+            size="lg"
             type="submit"
             onClick={handleSubmit}
           >

@@ -3,12 +3,23 @@ import { Link, useNavigate } from "react-router-dom"
 import Form from "react-bootstrap/Form"
 import InputGroup from "react-bootstrap/InputGroup"
 import Button from "react-bootstrap/Button"
+import useEditContext from "../../hook/useEditContext"
 
 import api from "../../services/api.jsx"
 import "./Home.css"
 
 function Home() {
   const navigate = useNavigate()
+  const {
+    setId,
+    setSector,
+    setNumberPatrimony,
+    setDescription,
+    setUnitDeliveryDate,
+    setPreviousSector,
+    setTransferDate,
+    setDestinationLocation,
+  } = useEditContext()
 
   const [patrimonys, setPatrimonys] = useState([])
   const [search, setSearch] = useState("")
@@ -40,7 +51,16 @@ function Home() {
       })
   })
 
-  function handleEdit() {
+  function handleEdit(item) {
+    setId(item._id)
+    setSector(item.sector)
+    setNumberPatrimony(item.numberPatrimony)
+    setDescription(item.description)
+    setUnitDeliveryDate(item.unitDeliveryDate)
+    setPreviousSector(item.previousSector)
+    setTransferDate(item.transferDate)
+    setDestinationLocation(item.destinationLocation)
+
     navigate("/edit")
   }
 
@@ -133,7 +153,7 @@ function Home() {
                       {
                         <Button
                           variant="outline-primary"
-                          onClick={() => handleEdit()}
+                          onClick={() => handleEdit(item)}
                         >
                           Editar
                         </Button>

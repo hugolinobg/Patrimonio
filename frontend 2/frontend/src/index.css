@@ -52,9 +52,6 @@ body::-webkit-scrollbar-track,
 
 body {
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   font-family: "Inter", sans-serif;
   font-size: 1.6rem;
   background-color: var(--bg-color-light);
@@ -62,6 +59,7 @@ body {
 }
 
 .main {
+  height: 90vh;
   margin: 3rem 2rem 0;
   padding: 0 3.5rem 3.5rem 3.5rem;
   background-color: var(--color-light);
@@ -149,3 +147,37 @@ h1 {
   }
 }
 
+@media screen and (max-width: 880px) {
+  .form-label {
+    font-size: 1.4rem;
+  }
+
+  .form-control {
+    font-size: 1.4rem;
+  }
+
+  .formSignin {
+    width: auto;
+  }
+
+  .formGroup {
+    width: auto;
+    display: block;
+  }
+
+  .input-group > .form-control,
+  .input-group > .form-floating,
+  .input-group > .form-select {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .formMain {
+    display: block;
+  }
+
+  .input-group {
+    display: block;
+  }
+}

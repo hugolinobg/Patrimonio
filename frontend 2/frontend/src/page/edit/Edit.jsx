@@ -1,46 +1,35 @@
-import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import Form from "react-bootstrap/Form"
 import Button from "react-bootstrap/Button"
 import FormGroup from "react-bootstrap/esm/FormGroup"
+import useEditContext from "../../hook/useEditContext"
 import api from "../../services/api"
 import "./Edit.css"
 
 function Edit() {
-
   const navigate = useNavigate()
 
-  const [sector, setSector] = useState("")
-  const [numberPatrimony, setNumberPatrimony] = useState("")
-  const [description, setDescription] = useState("")
-  const [unitDeliveryDate, setUnitDeliveryDate] = useState("")
-  const [previousSector, setPreviousSector] = useState("")
-  const [transferDate, setTransferDate] = useState("")
-  const [destinationLocation, setDestinationLocation] = useState("")
+  const {
+    id,
+    sector,
+    setSector,
+    numberPatrimony,
+    setNumberPatrimony,
+    description,
+    setDescription,
+    unitDeliveryDate,
+    setUnitDeliveryDate,
+    previousSector,
+    setPreviousSector,
+    transferDate,
+    setTransferDate,
+    destinationLocation,
+    setDestinationLocation,
+  } = useEditContext()
 
-  const [dateUnitDeliveryPtbr, setDateUnitDeliveryPtbr] = useState("")
-  const [dateTransferPtBr, setDateTransferPtBr] = useState("")
-
-  function formatDate() {
-    let dateUnitDelivery = new Date(dateUnitDeliveryPtbr)
-    let dateTransfer = new Date(dateTransferPtBr)
-
-    setUnitDeliveryDate(
-      dateUnitDelivery.toLocaleDateString("pt-BR", {
-        timeZone: "UTC",
-      })
-    )
-    setTransferDate(
-      dateTransfer.toLocaleDateString("pt-BR", {
-        timeZone: "UTC",
-      })
-    )
-    return
-  }
-
-  function handleSubmit(e) {
+  function handleSave(e) {
     e.preventDefault()
-    formatDate()
+
     if (
       sector === "" ||
       numberPatrimony === "" ||
@@ -64,10 +53,10 @@ function Edit() {
     console.log(patrimonys)
 
     api
-      .post("/patrimony", patrimonys)
+      .put(`/patrimony/${id}`, patrimonys)
       .then(navigate("/"))
       .catch((error) => {
-        alert(`Erro ao Cadastrar de Patrimônio - ${error}`)
+        alert(`Erro ao Editar o Patrimônio - ${error}`)
       })
   }
 
@@ -82,7 +71,7 @@ function Edit() {
             <Form.Label>Setor:</Form.Label>
             <Form.Control
               type="texte"
-              placeholder="Sala 08"
+              value={sector}
               onChange={(e) => setSector(e.target.value)}
               required
             />
@@ -92,7 +81,7 @@ function Edit() {
             <Form.Label>Número do Patrimônio:</Form.Label>
             <Form.Control
               type="number"
-              placeholder="175698"
+              value={numberPatrimony}
               onChange={(e) => setNumberPatrimony(e.target.value)}
               required
             />
@@ -102,18 +91,19 @@ function Edit() {
             <Form.Label>Descrição:</Form.Label>
             <Form.Control
               type="text"
-              placeholder="Descrição do Patrimônio"
-              required
+              value={description}
               onChange={(e) => setDescription(e.target.value)}
+              required
             />
           </FormGroup>
 
           <FormGroup className="mb-3" controlId="formUnitDeliveryDate">
             <Form.Label>Data de Entrega na Unidade:</Form.Label>
             <Form.Control
-              type="date"
+              type="text"
+              value={unitDeliveryDate}
+              onChange={(e) => setUnitDeliveryDate(e.target.value)}
               required
-              onChange={(e) => setDateUnitDeliveryPtbr(e.target.value)}
             />
           </FormGroup>
 
@@ -121,7 +111,7 @@ function Edit() {
             <Form.Label>Setor Anterior:</Form.Label>
             <Form.Control
               type="text"
-              placeholder="LMT"
+              value={previousSector || ""}
               onChange={(e) => setPreviousSector(e.target.value)}
             />
           </FormGroup>
@@ -129,8 +119,9 @@ function Edit() {
           <FormGroup className="mb-3" controlId="formTransferDate">
             <Form.Label>Data de Transferência:</Form.Label>
             <Form.Control
-              type="date"
-              onChange={(e) => setDateTransferPtBr(e.target.value)}
+              type="text"
+              value={transferDate || ""}
+              onChange={(e) => setTransferDate(e.target.value)}
             />
           </FormGroup>
 
@@ -138,16 +129,17 @@ function Edit() {
             <Form.Label>Localização de Destino:</Form.Label>
             <Form.Control
               type="text"
-              placeholder="Birigui"
+              value={destinationLocation || ""}
               onChange={(e) => setDestinationLocation(e.target.value)}
             />
           </FormGroup>
 
           <Button
             className="mt-5"
-            variant="outline-primary"
+            variant="outline-success"
+            size="lg"
             type="submit"
-            onClick={handleSubmit}
+            onClick={handleSave}
           >
             Salvar
           </Button>
