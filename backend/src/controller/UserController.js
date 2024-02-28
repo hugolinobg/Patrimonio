@@ -1,3 +1,4 @@
+import bcrypt from "bcryptjs"
 import { request, response } from "express"
 import User from "../schemas/User.js"
 
@@ -15,14 +16,26 @@ class UserController {
   }
 
   async create(req = request, res = response) {
-    const { name, email, password, nif } = req.body
+    const { name, email, password, nif, admin } = req.body
+
+    const userExists = await User.findOne({ where: { email } })
+
+    if (userExists) {
+      return res.status(404).json({
+        error: "User exists",
+        message: error,
+      })
+    }
+
+    const hashPassword = await bcrypt.hash(password, 10)
 
     try {
       const user = await User.create({
         name,
         email,
-        password,
+        password: hashPassword,
         nif,
+        admin,
       })
 
       return res.status(201).json(user)
@@ -36,13 +49,14 @@ class UserController {
 
   async put(req = request, res = response) {
     const { id } = req.params
-    const { name, email, nif } = req.body
+    const { name, email, nif, admin } = req.body
 
     try {
       const user = await User.findByIdAndUpdate(id, {
         name,
         email,
         nif,
+        admin,
       })
 
       return res.status(200).json(user)

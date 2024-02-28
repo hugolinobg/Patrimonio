@@ -1,8 +1,11 @@
 import { Router } from "express"
 import patrimonyController from "../controller/PatrimonyController.js"
-import userController from "../controller/UserController .js"
+import userController from "../controller/UserController.js"
+import authController from "../controller/AuthController.js"
 
 const routes = Router()
+
+routes.post("/api/auth", authController.authenticate)
 
 routes.get("/api/patrimony", patrimonyController.find)
 routes.post("/api/patrimony", patrimonyController.create)

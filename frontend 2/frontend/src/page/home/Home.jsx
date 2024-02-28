@@ -5,7 +5,7 @@ import InputGroup from "react-bootstrap/InputGroup"
 import Button from "react-bootstrap/Button"
 import useEditContext from "../../hook/useEditContext"
 
-import api from "../../services/api.jsx"
+import Api from "../../services/api.jsx"
 import "./Home.css"
 
 function Home() {
@@ -41,13 +41,12 @@ function Home() {
   }
 
   useEffect(() => {
-    api
-      .get("/patrimony")
+    Api.get("/patrimony")
       .then((res) => {
         setPatrimonys(res.data)
       })
-      .catch((error) => {
-        alert(`Erro ao carregar os dados do Patrimonio - ${error}`)
+      .catch((Error) => {
+        alert(`Erro ao carregar os dados do Patrimonio - ${Error}`)
       })
   })
 

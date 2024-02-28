@@ -14,8 +14,6 @@ function EditProvider(PropsType) {
   const [transferDate, setTransferDate] = useState("")
   const [destinationLocation, setDestinationLocation] = useState("")
 
-
-
   return (
     <EditContext.Provider
       value={{

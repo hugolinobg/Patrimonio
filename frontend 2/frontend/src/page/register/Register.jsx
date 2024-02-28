@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 import Form from "react-bootstrap/Form"
 import Button from "react-bootstrap/Button"
 import FormGroup from "react-bootstrap/esm/FormGroup"
-import api from "../../services/api"
+import Api from "../../services/api"
 import "./Register.css"
 
 function Register() {
@@ -62,7 +62,7 @@ function Register() {
 
     console.log(patrimonys)
 
-    api
+    Api
       .post("/patrimony", patrimonys)
       .then(navigate("/"))
       .catch((error) => {

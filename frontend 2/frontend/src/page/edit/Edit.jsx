@@ -3,7 +3,7 @@ import Form from "react-bootstrap/Form"
 import Button from "react-bootstrap/Button"
 import FormGroup from "react-bootstrap/esm/FormGroup"
 import useEditContext from "../../hook/useEditContext"
-import api from "../../services/api"
+import Api from "../../services/api"
 import "./Edit.css"
 
 function Edit() {
@@ -50,9 +50,7 @@ function Edit() {
       destinationLocation,
     }
 
-    console.log(patrimonys)
-
-    api
+    Api
       .put(`/patrimony/${id}`, patrimonys)
       .then(navigate("/"))
       .catch((error) => {

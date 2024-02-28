@@ -12,7 +12,7 @@ const User = new mongoose.Schema(
     },
     password: {
       type: String,
-      select: false,
+      // select: false,
       required: true,
     },
     nif: {
@@ -22,7 +22,7 @@ const User = new mongoose.Schema(
     admin: {
       type: Boolean,
       required: true,
-    },
+    }
   },
   {
     timestamps: true,

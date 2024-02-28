@@ -1,25 +1,28 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-
-import Signin from "../page/signin/Signin.jsx"
+import PrivateRoutes from "./PrivateRoutes.jsx"
+import Login from "../page/login/Login.jsx"
 import Home from "../page/home/Home.jsx"
 import Register from "../page/register/Register.jsx"
 import Edit from "../page/edit/Edit.jsx"
-
-const Private = ({ Item }) => {
-  const signed = false
-
-  return signed > 0 ? <Item /> : <Signin />
-}
 
 function Router() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="*" element={<Signin />} />
-        <Route exact path="/" element={<Signin />} />
-        <Route path="/home" element={<Private Item={Home} />} />
-        <Route path="/register" element={<Private Item={Register} />} />
-        <Route path="/edit" element={<Private Item={Edit} />} />
+        <Route path="*" element={<Login />} />
+        <Route exact path="/" element={<Login />} />
+
+        <Route path="/home" element={<PrivateRoutes />}>
+          <Route exact path="/home" element={<Home />} />
+        </Route>
+
+        <Route path="/register" element={<PrivateRoutes />}>
+          <Route exact path="/register" element={<Register />} />
+        </Route>
+
+        <Route path="/edit" element={<PrivateRoutes />}>
+          <Route exact path="/edit" element={<Edit />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   )
