@@ -1,3 +1,10 @@
+.formRgt{
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .form {
   margin-bottom: 2rem;
 }

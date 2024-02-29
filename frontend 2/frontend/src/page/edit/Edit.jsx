@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom"
+import { Navigate, Link } from "react-router-dom"
 import Form from "react-bootstrap/Form"
 import Button from "react-bootstrap/Button"
 import FormGroup from "react-bootstrap/esm/FormGroup"
@@ -7,8 +7,6 @@ import Api from "../../services/api"
 import "./Edit.css"
 
 function Edit() {
-  const navigate = useNavigate()
-
   const {
     id,
     sector,
@@ -27,7 +25,7 @@ function Edit() {
     setDestinationLocation,
   } = useEditContext()
 
-  function handleSave(e) {
+  const handleSave = (e) => {
     e.preventDefault()
 
     if (
@@ -50,17 +48,19 @@ function Edit() {
       destinationLocation,
     }
 
-    Api
-      .put(`/patrimony/${id}`, patrimonys)
-      .then(navigate("/"))
+    Api.put(`/patrimony/${id}`, patrimonys)
+      .then(<Navigate to="/home" />)
       .catch((error) => {
         alert(`Erro ao Editar o Patrimônio - ${error}`)
       })
   }
 
   return (
-    <>
-      <div className="main formRgt">
+    <div className="main">
+      <div className="formRgt">
+        <Link className="linkBtn" to="/home">
+          Voltar
+        </Link>
         <h1>Editar Patrimônio</h1>
         <hr />
 
@@ -70,7 +70,7 @@ function Edit() {
             <Form.Control
               type="texte"
               value={sector}
-              onChange={(e) => setSector(e.target.value)}
+              onChange={(e) => setSector(e.target.value.toLowerCase())}
               required
             />
           </FormGroup>
@@ -90,7 +90,7 @@ function Edit() {
             <Form.Control
               type="text"
               value={description}
-              onChange={(e) => setDescription(e.target.value)}
+              onChange={(e) => setDescription(e.target.value.toLowerCase())}
               required
             />
           </FormGroup>
@@ -110,7 +110,7 @@ function Edit() {
             <Form.Control
               type="text"
               value={previousSector || ""}
-              onChange={(e) => setPreviousSector(e.target.value)}
+              onChange={(e) => setPreviousSector(e.target.value.toLowerCase())}
             />
           </FormGroup>
 
@@ -128,7 +128,9 @@ function Edit() {
             <Form.Control
               type="text"
               value={destinationLocation || ""}
-              onChange={(e) => setDestinationLocation(e.target.value)}
+              onChange={(e) =>
+                setDestinationLocation(e.target.value.toLowerCase())
+              }
             />
           </FormGroup>
 
@@ -143,7 +145,7 @@ function Edit() {
           </Button>
         </Form>
       </div>
-    </>
+    </div>
   )
 }
 

@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { Navigate } from "react-router-dom"
 import useAuthContext from "../../hook/useAuthContext"
 import Form from "react-bootstrap/Form"
 import InputGroup from "react-bootstrap/InputGroup"
@@ -8,7 +8,6 @@ import image from "../../assets/image/login.svg"
 import "./Login.css"
 
 function Login() {
-  const navigate = useNavigate()
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const { signIn, signEd } = useAuthContext()
@@ -25,11 +24,11 @@ function Login() {
   }
 
   if (signEd) {
-    return navigate("/home")
+    return <Navigate to="/home" />
   } else {
     return (
-      <>
-        <div className="main formMain">
+      <div className="main">
+        <div className="formMain">
           <div className="formGroup">
             <div className="image">
               <img
@@ -68,7 +67,7 @@ function Login() {
             </Form>
           </div>
         </div>
-      </>
+      </div>
     )
   }
 }

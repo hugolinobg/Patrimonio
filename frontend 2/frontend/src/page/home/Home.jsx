@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { Link, Navigate } from "react-router-dom"
 import Form from "react-bootstrap/Form"
 import InputGroup from "react-bootstrap/InputGroup"
 import Button from "react-bootstrap/Button"
+import useAuthContext from "../../hook/useAuthContext"
 import useEditContext from "../../hook/useEditContext"
+
 
 import Api from "../../services/api.jsx"
 import "./Home.css"
 
 function Home() {
-  const navigate = useNavigate()
+  const { signOut } = useAuthContext()
   const {
     setId,
     setSector,
@@ -23,7 +25,6 @@ function Home() {
 
   const [patrimonys, setPatrimonys] = useState([])
   const [search, setSearch] = useState("")
-  // const [checked, setChecked] = useState(false)
 
   const [checkboxStatus, setCheckboxStatus] = useState(
     JSON.parse(localStorage.getItem("checkboxStatus")) || {}
@@ -50,7 +51,7 @@ function Home() {
       })
   })
 
-  function handleEdit(item) {
+  const handleEdit = (item) => {
     setId(item._id)
     setSector(item.sector)
     setNumberPatrimony(item.numberPatrimony)
@@ -60,12 +61,15 @@ function Home() {
     setTransferDate(item.transferDate)
     setDestinationLocation(item.destinationLocation)
 
-    navigate("/edit")
+   return <Navigate to="/edit" />
   }
 
   return (
-    <>
-      <div className="main">
+    <div className="main">
+      <div className="mainHome">
+        <Link className="linkBtn" onClick={signOut}>
+          Sair
+        </Link>
         <h1>Gerenciamento de Patrimônios</h1>
         <hr />
 
@@ -164,7 +168,7 @@ function Home() {
           </tbody>
         </table>
       </div>
-    </>
+    </div>
   )
 }
 

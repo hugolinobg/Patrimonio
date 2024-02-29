@@ -59,7 +59,9 @@ body {
 }
 
 .main {
-  height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin: 3rem 2rem 0;
   padding: 0 3.5rem 3.5rem 3.5rem;
   background-color: var(--color-light);
@@ -105,6 +107,24 @@ h1 {
   text-align: center;
   padding-top: 3rem !important;
   padding-bottom: 3rem !important;
+}
+
+.linkBtn {
+  padding: 1rem 1.8rem;
+  color: #d94140;
+  background-color: transparent;
+  border: 1px solid #d94140;
+  border-radius: 0.5rem;
+  font-size: 1.6rem;
+  width: 10.5%;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.5s;
+}
+
+.linkBtn:hover {
+  background-color: #d94140;
+  color: #fff;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -175,14 +195,12 @@ h1 {
 @media screen and (max-width: 400px) {
   .formMain {
     display: block;
+    height: 90vh;
+    padding: 0 3.5rem 3.5rem 3.5rem !important;
   }
 
   .input-group {
     display: block;
-  }
-
-  .formMain {
-    padding: 0 3.5rem 3.5rem 3.5rem !important;
   }
 
   .image {

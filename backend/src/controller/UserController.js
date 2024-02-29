@@ -1,29 +1,31 @@
+import express from "express"
 import bcrypt from "bcryptjs"
-import { request, response } from "express"
 import User from "../schemas/User.js"
+const { Request, Response } = express
 
 class UserController {
-  async find(req = request, res = response) {
+  async find(req = Request, res = Response) {
     try {
       const users = await User.find()
       return res.status(200).json(users)
     } catch (error) {
       return res.status(500).json({
-        error: "Something wrong happend, try again",
-        message: error,
+        message: `Something wrong happend, try again: ${error}`,
       })
     }
   }
 
-  async create(req = request, res = response) {
+  async create(req = Request, res = Response) {
     const { name, email, password, nif, admin } = req.body
 
-    const userExists = await User.findOne({ where: { email } })
+    const userExists = await User.findOne(
+      { name: name, email: email, nif: nif },
+      { _id: 0 }
+    )
 
     if (userExists) {
       return res.status(404).json({
-        error: "User exists",
-        message: error,
+        message: "User exists",
       })
     }
 
@@ -41,20 +43,22 @@ class UserController {
       return res.status(201).json(user)
     } catch (error) {
       return res.status(500).json({
-        error: "Registratio failed",
-        message: error,
+        message: `Registratio failed: ${error}`,
       })
     }
   }
 
-  async put(req = request, res = response) {
+  async put(req = Request, res = Response) {
     const { id } = req.params
-    const { name, email, nif, admin } = req.body
+    const { name, email, password, nif, admin } = req.body
+
+    const hashPassword = await bcrypt.hash(password, 10)
 
     try {
       const user = await User.findByIdAndUpdate(id, {
         name,
         email,
+        password: hashPassword,
         nif,
         admin,
       })
@@ -62,13 +66,12 @@ class UserController {
       return res.status(200).json(user)
     } catch (error) {
       return res.status(500).json({
-        error: "Something wrong happend, try again",
-        message: error,
+        message: `Something wrong happend, try again: ${error}`,
       })
     }
   }
 
-  async delete(req = request, res = response) {
+  async delete(req = Request, res = Response) {
     const { id } = req.params
 
     try {
@@ -77,8 +80,7 @@ class UserController {
       return res.status(200).json(user)
     } catch (error) {
       return res.status(500).json({
-        error: "Something wrong happend, try again",
-        message: error,
+        message: `Something wrong happend, try again: ${error}`,
       })
     }
   }

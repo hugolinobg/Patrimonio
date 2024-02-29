@@ -5,9 +5,13 @@ meta {
 }
 
 post {
-  url: http://localhost:3000/api/patrimony/
+  url: http://localhost:3000/v1/api/patrimony/
   body: json
-  auth: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZTA2ZDE1ZGMyZGUwZGE0MDM1MTRjMyIsImlhdCI6MTcwOTIxMzgxOSwiZXhwIjoxNzA5MzAwMjE5fQ.glMIAuVKcLnA2JzUEHAdj9X8S29p19r_GG6ewPNr940
 }
 
 body:json {

@@ -5,7 +5,11 @@ meta {
 }
 
 get {
-  url: http://localhost:3000/api/users/
+  url: http://localhost:3000/v1/api/users/
   body: none
-  auth: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZTA2ZDE1ZGMyZGUwZGE0MDM1MTRjMyIsImlhdCI6MTcwOTIxNDk5MywiZXhwIjoxNzA5MzAxMzkzfQ.2RYqveX-fsWuk5Imvb_9j1jolj0dbEHhUWS4aJ1lIcs
 }

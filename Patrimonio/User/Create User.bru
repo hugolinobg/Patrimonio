@@ -5,17 +5,21 @@ meta {
 }
 
 post {
-  url: http://localhost:3000/api/user/
+  url: http://localhost:3000/v1/api/user
   body: json
-  auth: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZTA2ZDE1ZGMyZGUwZGE0MDM1MTRjMyIsImlhdCI6MTcwOTIxMzgxOSwiZXhwIjoxNzA5MzAwMjE5fQ.glMIAuVKcLnA2JzUEHAdj9X8S29p19r_GG6ewPNr940
 }
 
 body:json {
   {
-      "name": "Elaine Dourado",
-      "email": "elaine.dourado@sesisp.org.br",
+      "name": "Hugolino Guimarãese",
+      "email": "hugolino.guimaraes@sesisp.org.br",
       "password": "Sesisp@2025",
-      "nif": "1054840",
+      "nif": "1087483",
       "admin": true
   }
 }

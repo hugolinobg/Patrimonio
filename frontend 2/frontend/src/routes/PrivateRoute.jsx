@@ -1,11 +1,11 @@
 import { Navigate, Outlet } from "react-router-dom"
 import useAuthContext from "../hook/useAuthContext"
 
-function PrivateRoutes(){
+function PrivateRoute(){
   const { signEd } = useAuthContext()
 
   return signEd ? <Outlet /> : <Navigate to="/" />
 }
 
 
-export default PrivateRoutes
+export default PrivateRoute

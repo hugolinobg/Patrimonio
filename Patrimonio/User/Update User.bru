@@ -5,15 +5,21 @@ meta {
 }
 
 put {
-  url: http://localhost:3000/api/user/658df1467db118ca2b97ffbe
+  url: http://localhost:3000/v1/api/user/65e06d15dc2de0da403514c3
   body: json
-  auth: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZTA2ZDE1ZGMyZGUwZGE0MDM1MTRjMyIsImlhdCI6MTcwOTIxMzgxOSwiZXhwIjoxNzA5MzAwMjE5fQ.glMIAuVKcLnA2JzUEHAdj9X8S29p19r_GG6ewPNr940
 }
 
 body:json {
   {
-      "name": "Hugolino",
-      "email":"hugolinoguimaraes@sesisp.org.br",
-      "nif": "1087483"
+      "name": "Hugolino Guimarãese",
+      "email": "hugolino.guimaraes@sesisp.org.br",
+      "password": "Sesisp@1993",
+      "nif": "1087483",
+      "admin": true
   }
 }

@@ -1,20 +1,23 @@
-import { request, response } from "express"
+import express from "express"
+import "dotenv/config"
 import bcrypt from "bcryptjs"
 import jwt from "jsonwebtoken"
 import User from "../schemas/User.js"
+const { Request, Response } = express
 
 class AuthController {
-  async authenticate(req = request, res = response) {
+  async authenticate(req = Request, res = Response) {
     const { email, password } = req.body
 
     try {
-
-      const user = await User.findOne({ $where: { email } })
+      const user = await User.findOne(
+        { email: email },
+        { nif: 0, admin: 0, createdAt: 0, updatedAt: 0 }
+      )
 
       if (!user) {
         return res.status(404).json({
-          error: "User Not Found",
-          message: error,
+          message: `User Not Found`,
         })
       }
 
@@ -22,20 +25,20 @@ class AuthController {
 
       if (!isValuesPassword) {
         return res.status(404).json({
-          error: "Password invalid",
-          message: error,
+          message: `Password invalid`,
         })
       }
 
-      const token = jwt.sign({ id: user._id }, process.env.PRIVATE_kEY, {
-        expiresIn: "3d",
+      const token = jwt.sign({ id: user._id }, `${process.env.JWT_KEY}`, {
+        expiresIn: "2d",
       })
 
-      return res.status(201).json(user, token)
+      const { _id } = user
+
+      return res.status(201).json({ user: { _id, email }, token })
     } catch (error) {
       return res.status(500).json({
-        error: "Registratio failed",
-        message: error,
+        message: `Registratio failed: ${error}`,
       })
     }
   }

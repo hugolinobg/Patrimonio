@@ -4,6 +4,7 @@
   align-items: center;
   justify-content: center;
   padding: 0 !important;
+  height: 90vh;
 }
 
 .formGroup {
@@ -19,6 +20,7 @@
 }
 
 .image img {
+  object-fit: cover;
   max-width: 270px;
 }
 

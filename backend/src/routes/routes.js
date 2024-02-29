@@ -2,19 +2,24 @@ import { Router } from "express"
 import patrimonyController from "../controller/PatrimonyController.js"
 import userController from "../controller/UserController.js"
 import authController from "../controller/AuthController.js"
+import AuthMiddlewares from "../middlewares/auth.js"
 
 const routes = Router()
 
-routes.post("/api/auth", authController.authenticate)
+routes.post("/v1/api/auth", authController.authenticate)
 
-routes.get("/api/patrimony", patrimonyController.find)
-routes.post("/api/patrimony", patrimonyController.create)
-routes.put("/api/patrimony/:id", patrimonyController.put)
-routes.delete("/api/patrimony/:id", patrimonyController.delete)
+routes.get("/v1/api/patrimony", AuthMiddlewares, patrimonyController.find)
+routes.post("/v1/api/patrimony", AuthMiddlewares, patrimonyController.create)
+routes.put("/v1/api/patrimony/:id", AuthMiddlewares, patrimonyController.put)
+routes.delete(
+  "/v1/api/patrimony/:id",
+  AuthMiddlewares,
+  patrimonyController.delete
+)
 
-routes.get("/api/users", userController.find)
-routes.post("/api/user", userController.create)
-routes.put("/api/user/:id", userController.put)
-routes.delete("/api/user/:id", userController.delete)
+routes.get("/v1/api/user", AuthMiddlewares, userController.find)
+routes.post("/v1/api/user", AuthMiddlewares, userController.create)
+routes.put("/v1/api/user/:id", AuthMiddlewares, userController.put)
+routes.delete("/v1/api/user/:id", AuthMiddlewares, userController.delete)
 
 export default routes

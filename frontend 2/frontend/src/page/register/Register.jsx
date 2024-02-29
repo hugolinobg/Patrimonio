@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { Navigate, Link } from "react-router-dom"
 import Form from "react-bootstrap/Form"
 import Button from "react-bootstrap/Button"
 import FormGroup from "react-bootstrap/esm/FormGroup"
@@ -7,7 +7,6 @@ import Api from "../../services/api"
 import "./Register.css"
 
 function Register() {
-  const navigate = useNavigate()
 
   const [sector, setSector] = useState("")
   const [numberPatrimony, setNumberPatrimony] = useState("")
@@ -20,9 +19,11 @@ function Register() {
   const [dateUnitDeliveryPtbr, setDateUnitDeliveryPtbr] = useState("")
   const [dateTransferPtBr, setDateTransferPtBr] = useState("")
 
-  function formatDate() {
+  const formatDate = () => {
     let dateUnitDelivery = new Date(dateUnitDeliveryPtbr)
+    console.log(dateTransferPtBr)
     let dateTransfer = new Date(dateTransferPtBr)
+
 
     setUnitDeliveryDate(
       dateUnitDelivery.toLocaleDateString("pt-BR", {
@@ -34,12 +35,15 @@ function Register() {
         timeZone: "UTC",
       })
     )
+    console.log(transferDate)
     return
   }
 
-  function handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault()
+
     formatDate()
+
     if (
       sector === "" ||
       numberPatrimony === "" ||
@@ -62,17 +66,19 @@ function Register() {
 
     console.log(patrimonys)
 
-    Api
-      .post("/patrimony", patrimonys)
-      .then(navigate("/"))
+    Api.post("/patrimony", patrimonys)
+      .then(<Navigate to="/home" />)
       .catch((error) => {
         alert(`Erro ao Cadastrar de Patrimônio - ${error}`)
       })
   }
 
   return (
-    <>
-      <div className="main formRgt">
+    <div className="main">
+      <div className="formRgt">
+        <Link className="linkBtn" to="/home">
+          Voltar
+        </Link>
         <h1>Cadastro de Patrimônio</h1>
         <hr />
 
@@ -82,7 +88,7 @@ function Register() {
             <Form.Control
               type="texte"
               placeholder="Sala 08"
-              onChange={(e) => setSector(e.target.value)}
+              onChange={(e) => setSector(e.target.value.toLowerCase())}
               required
             />
           </FormGroup>
@@ -102,8 +108,8 @@ function Register() {
             <Form.Control
               type="text"
               placeholder="Descrição do Patrimônio"
+              onChange={(e) => setDescription(e.target.value.toLowerCase())}
               required
-              onChange={(e) => setDescription(e.target.value)}
             />
           </FormGroup>
 
@@ -111,8 +117,8 @@ function Register() {
             <Form.Label>Data de Entrega na Unidade:</Form.Label>
             <Form.Control
               type="date"
-              required
               onChange={(e) => setDateUnitDeliveryPtbr(e.target.value)}
+              required
             />
           </FormGroup>
 
@@ -121,7 +127,7 @@ function Register() {
             <Form.Control
               type="text"
               placeholder="LMT"
-              onChange={(e) => setPreviousSector(e.target.value)}
+              onChange={(e) => setPreviousSector(e.target.value.toLowerCase())}
             />
           </FormGroup>
 
@@ -129,7 +135,7 @@ function Register() {
             <Form.Label>Data de Transferência:</Form.Label>
             <Form.Control
               type="date"
-              onChange={(e) => setDateTransferPtBr(e.target.value)}
+              onChange={(e) => setDateTransferPtBr(e.target.value || null)}
             />
           </FormGroup>
 
@@ -138,7 +144,9 @@ function Register() {
             <Form.Control
               type="text"
               placeholder="Birigui"
-              onChange={(e) => setDestinationLocation(e.target.value)}
+              onChange={(e) =>
+                setDestinationLocation(e.target.value.toLowerCase())
+              }
             />
           </FormGroup>
 
@@ -153,7 +161,7 @@ function Register() {
           </Button>
         </Form>
       </div>
-    </>
+    </div>
   )
 }
 

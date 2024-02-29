@@ -1,8 +1,9 @@
-import { request, response } from "express"
+import express from "express"
 import Patrimony from "../schemas/Patrimony.js"
+const { Request, Response } = express
 
 class PatrimonyController {
-  async find(req = request, res = response) {
+  async find(req = Request, res = Response) {
     try {
       const patrimonies = await Patrimony.find()
       return res.status(200).json(patrimonies)
@@ -14,7 +15,7 @@ class PatrimonyController {
     }
   }
 
-  async create(req = request, res = response) {
+  async create(req = Request, res = Response) {
     const {
       sector,
       numberPatrimony,
@@ -45,7 +46,7 @@ class PatrimonyController {
     }
   }
 
-  async put(req = request, res = response) {
+  async put(req = Request, res = Response) {
     const { id } = req.params
     const {
       sector,
@@ -77,7 +78,7 @@ class PatrimonyController {
     }
   }
 
-  async delete(req = request, res = response) {
+  async delete(req = Request, res = Response) {
     const { id } = req.params
 
     try {
