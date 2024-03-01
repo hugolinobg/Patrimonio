@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Navigate, Link } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 import Form from "react-bootstrap/Form"
 import Button from "react-bootstrap/Button"
 import FormGroup from "react-bootstrap/esm/FormGroup"
@@ -7,6 +7,7 @@ import Api from "../../services/api"
 import "./Register.css"
 
 function Register() {
+  const navigate = useNavigate()
 
   const [sector, setSector] = useState("")
   const [numberPatrimony, setNumberPatrimony] = useState("")
@@ -16,33 +17,8 @@ function Register() {
   const [transferDate, setTransferDate] = useState("")
   const [destinationLocation, setDestinationLocation] = useState("")
 
-  const [dateUnitDeliveryPtbr, setDateUnitDeliveryPtbr] = useState("")
-  const [dateTransferPtBr, setDateTransferPtBr] = useState("")
-
-  const formatDate = () => {
-    let dateUnitDelivery = new Date(dateUnitDeliveryPtbr)
-    console.log(dateTransferPtBr)
-    let dateTransfer = new Date(dateTransferPtBr)
-
-
-    setUnitDeliveryDate(
-      dateUnitDelivery.toLocaleDateString("pt-BR", {
-        timeZone: "UTC",
-      })
-    )
-    setTransferDate(
-      dateTransfer.toLocaleDateString("pt-BR", {
-        timeZone: "UTC",
-      })
-    )
-    console.log(transferDate)
-    return
-  }
-
   const handleSubmit = (e) => {
     e.preventDefault()
-
-    formatDate()
 
     if (
       sector === "" ||
@@ -50,11 +26,13 @@ function Register() {
       description === "" ||
       unitDeliveryDate === ""
     ) {
-      alert("Preencha todos os campos!")
+      alert(
+        "Preencha os campos de Setor, Nº do Patrimônio, Descrição e Data de Entrega na Unidade!"
+      )
       return
     }
 
-    const patrimonys = {
+    const data = {
       sector,
       numberPatrimony,
       description,
@@ -64,12 +42,10 @@ function Register() {
       destinationLocation,
     }
 
-    console.log(patrimonys)
-
-    Api.post("/patrimony", patrimonys)
-      .then(<Navigate to="/home" />)
+    Api.post("/patrimony", data)
+      .then(navigate("/home"))
       .catch((error) => {
-        alert(`Erro ao Cadastrar de Patrimônio - ${error}`)
+        alert(`Erro ao Cadastrar de Patrimônio - ${error.response.data}`)
       })
   }
 
@@ -83,46 +59,52 @@ function Register() {
         <hr />
 
         <Form className="form">
-          <FormGroup className="mb-3" controlId="formSector">
+          <FormGroup className="mb-3">
             <Form.Label>Setor:</Form.Label>
             <Form.Control
               type="texte"
               placeholder="Sala 08"
-              onChange={(e) => setSector(e.target.value.toLowerCase())}
               required
+              onChange={(e) => setSector(e.target.value.toLowerCase())}
             />
           </FormGroup>
 
-          <FormGroup className="mb-3" controlId="formNumberPatrimony">
+          <FormGroup className="mb-3">
             <Form.Label>Número do Patrimônio:</Form.Label>
             <Form.Control
               type="number"
               placeholder="175698"
-              onChange={(e) => setNumberPatrimony(e.target.value)}
               required
+              onChange={(e) => setNumberPatrimony(e.target.valueAsNumber)}
             />
           </FormGroup>
 
-          <FormGroup className="mb-3" controlId="formDescription">
+          <FormGroup className="mb-3">
             <Form.Label>Descrição:</Form.Label>
             <Form.Control
               type="text"
               placeholder="Descrição do Patrimônio"
-              onChange={(e) => setDescription(e.target.value.toLowerCase())}
               required
+              onChange={(e) => setDescription(e.target.value.toLowerCase())}
             />
           </FormGroup>
 
-          <FormGroup className="mb-3" controlId="formUnitDeliveryDate">
+          <FormGroup className="mb-3">
             <Form.Label>Data de Entrega na Unidade:</Form.Label>
             <Form.Control
               type="date"
-              onChange={(e) => setDateUnitDeliveryPtbr(e.target.value)}
               required
+              onChange={(e) =>
+                setUnitDeliveryDate(
+                  e.target.valueAsDate.toLocaleDateString("pt-BR", {
+                    timeZone: "UTC",
+                  })
+                )
+              }
             />
           </FormGroup>
 
-          <FormGroup className="mb-3" controlId="formPreviousSector">
+          <FormGroup className="mb-3">
             <Form.Label>Setor Anterior:</Form.Label>
             <Form.Control
               type="text"
@@ -131,15 +113,21 @@ function Register() {
             />
           </FormGroup>
 
-          <FormGroup className="mb-3" controlId="formTransferDate">
+          <FormGroup className="mb-3">
             <Form.Label>Data de Transferência:</Form.Label>
             <Form.Control
               type="date"
-              onChange={(e) => setDateTransferPtBr(e.target.value || null)}
+              onChange={(e) =>
+                setTransferDate(
+                  e.target.valueAsDate.toLocaleDateString("pt-BR", {
+                    timeZone: "UTC",
+                  })
+                )
+              }
             />
           </FormGroup>
 
-          <FormGroup className="mb-3" controlId="formDestinationLocation">
+          <FormGroup className="mb-3">
             <Form.Label>Localização de Destino:</Form.Label>
             <Form.Control
               type="text"

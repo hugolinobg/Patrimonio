@@ -9,8 +9,7 @@ class PatrimonyController {
       return res.status(200).json(patrimonies)
     } catch (error) {
       return res.status(500).json({
-        error: "Something wrong happend, try again",
-        message: error,
+        message: `Something wrong happend, try again: ${error}`,
       })
     }
   }
@@ -40,8 +39,7 @@ class PatrimonyController {
       return res.status(201).json(patrimony)
     } catch (error) {
       return res.status(500).json({
-        error: "Registratio failed",
-        message: error,
+        message: `Registratio failed: ${error}`,
       })
     }
   }
@@ -72,8 +70,7 @@ class PatrimonyController {
       return res.status(201).json(patrimony)
     } catch (error) {
       return res.status(500).json({
-        error: "Something wrong happend, try again",
-        message: error,
+        message: `Something wrong happend, try again: ${error}`,
       })
     }
   }
@@ -87,8 +84,7 @@ class PatrimonyController {
       return res.status(200).json(patrimony)
     } catch (error) {
       return res.status(500).json({
-        error: "Something wrong happend, try again",
-        message: error,
+        message: `Something wrong happend, try again: ${error}`,
       })
     }
   }

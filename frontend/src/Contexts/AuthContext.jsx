@@ -21,35 +21,41 @@ function AuthProvider(PropsType) {
   }, [])
 
   const signIn = async ({ email, password }) => {
-    const res = await Api.post("/auth", {
-      email,
-      password,
-    })
+    try {
+      const response = await Api.post("/auth", {
+        email,
+        password,
+      })
 
-    if (res.data.error) {
-      alert(res.data.error)
-    } else {
-      setUser(res.data.user)
-      Api.defaults.headers.common["Authorization"] = `Bearer ${res.data.token}`
-      localStorage.setItem("@Auth:token", res.data.token)
-      localStorage.setItem("@Auth:user", JSON.stringify(res.data.user))
+      if (response.data.error) {
+        alert(response.data.error)
+      } else {
+        setUser(response.data)
+        Api.defaults.headers.common[
+          "Authorization"
+        ] = `Bearer ${response.data.token}`
+        localStorage.setItem("@Auth:user", JSON.stringify(response.data.user))
+        localStorage.setItem("@Auth:token", response.data.token)
+      }
+    } catch (error) {
+      console.log(error)
     }
   }
 
-  const signOut = () =>{
-     localStorage.removeItem("@Auth:token")
-     localStorage.removeItem("@Auth:user")
-     setUser(null)
-     return <Navigate to="/" />
+  const signOut = () => {
+    localStorage.removeItem("@Auth:user")
+    localStorage.removeItem("@Auth:token")
+    setUser(null)
+    return <Navigate to="/" />
   }
 
   return (
     <AuthContext.Provider
       value={{
         user,
-        signEd: !!user,
         signIn,
         signOut,
+        signEd: !!user,
       }}
     >
       {PropsType.children}

@@ -3,8 +3,6 @@ import { createContext, useState } from "react"
 const EditContext = createContext()
 
 function EditProvider(PropsType) {
-  const [edititem, setEdititem] = useState([])
-
   const [id, setId] = useState("")
   const [sector, setSector] = useState("")
   const [numberPatrimony, setNumberPatrimony] = useState("")
@@ -17,8 +15,6 @@ function EditProvider(PropsType) {
   return (
     <EditContext.Provider
       value={{
-        edititem,
-        setEdititem,
         id,
         setId,
         sector,

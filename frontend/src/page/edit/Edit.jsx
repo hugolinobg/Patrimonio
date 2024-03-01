@@ -1,4 +1,4 @@
-import { Navigate, Link } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 import Form from "react-bootstrap/Form"
 import Button from "react-bootstrap/Button"
 import FormGroup from "react-bootstrap/esm/FormGroup"
@@ -7,6 +7,7 @@ import Api from "../../services/api"
 import "./Edit.css"
 
 function Edit() {
+  const navigate = useNavigate()
   const {
     id,
     sector,
@@ -34,11 +35,13 @@ function Edit() {
       description === "" ||
       unitDeliveryDate === ""
     ) {
-      alert("Preencha todos os campos!")
+      alert(
+        "Preencha os campos de Setor, Nº do Patrimônio, Descrição e Data de Entrega na Unidade!"
+      )
       return
     }
 
-    const patrimonys = {
+    const data = {
       sector,
       numberPatrimony,
       description,
@@ -48,10 +51,10 @@ function Edit() {
       destinationLocation,
     }
 
-    Api.put(`/patrimony/${id}`, patrimonys)
-      .then(<Navigate to="/home" />)
+    Api.put(`/patrimony/${id}`, data)
+      .then(navigate("/home"))
       .catch((error) => {
-        alert(`Erro ao Editar o Patrimônio - ${error}`)
+        alert(`Erro ao Editar o Patrimônio - ${error.response.data}`)
       })
   }
 
@@ -65,7 +68,7 @@ function Edit() {
         <hr />
 
         <Form className="form">
-          <FormGroup className="mb-3" controlId="formSector">
+          <FormGroup className="mb-3">
             <Form.Label>Setor:</Form.Label>
             <Form.Control
               type="texte"
@@ -75,17 +78,17 @@ function Edit() {
             />
           </FormGroup>
 
-          <FormGroup className="mb-3" controlId="formNumberPatrimony">
+          <FormGroup className="mb-3">
             <Form.Label>Número do Patrimônio:</Form.Label>
             <Form.Control
               type="number"
               value={numberPatrimony}
-              onChange={(e) => setNumberPatrimony(e.target.value)}
+              onChange={(e) => setNumberPatrimony(e.target.valueAsNumber)}
               required
             />
           </FormGroup>
 
-          <FormGroup className="mb-3" controlId="formDescription">
+          <FormGroup className="mb-3">
             <Form.Label>Descrição:</Form.Label>
             <Form.Control
               type="text"
@@ -95,7 +98,7 @@ function Edit() {
             />
           </FormGroup>
 
-          <FormGroup className="mb-3" controlId="formUnitDeliveryDate">
+          <FormGroup className="mb-3">
             <Form.Label>Data de Entrega na Unidade:</Form.Label>
             <Form.Control
               type="text"
@@ -105,7 +108,7 @@ function Edit() {
             />
           </FormGroup>
 
-          <FormGroup className="mb-3" controlId="formPreviousSector">
+          <FormGroup className="mb-3">
             <Form.Label>Setor Anterior:</Form.Label>
             <Form.Control
               type="text"
@@ -114,7 +117,7 @@ function Edit() {
             />
           </FormGroup>
 
-          <FormGroup className="mb-3" controlId="formTransferDate">
+          <FormGroup className="mb-3">
             <Form.Label>Data de Transferência:</Form.Label>
             <Form.Control
               type="text"
@@ -123,7 +126,7 @@ function Edit() {
             />
           </FormGroup>
 
-          <FormGroup className="mb-3" controlId="formDestinationLocation">
+          <FormGroup className="mb-3">
             <Form.Label>Localização de Destino:</Form.Label>
             <Form.Control
               type="text"

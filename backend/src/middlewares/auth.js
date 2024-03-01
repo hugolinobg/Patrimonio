@@ -1,8 +1,7 @@
 import express from "express"
-const { Request, Response, NextFunction } = express
-
 import "dotenv/config"
 import jwt from "jsonwebtoken"
+const { Request, Response, NextFunction } = express
 
 function AuthMiddlewares(req = Request, res = Response, next = NextFunction) {
   const { authorization } = req.headers
@@ -14,8 +13,8 @@ function AuthMiddlewares(req = Request, res = Response, next = NextFunction) {
   const [, token] = req.headers.authorization.split(" ")
 
   try {
-    
     const decoded = jwt.verify(token, `${process.env.JWT_KEY}`)
+
     req.userId = decoded.id
 
     next()

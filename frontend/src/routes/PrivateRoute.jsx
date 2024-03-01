@@ -7,5 +7,4 @@ function PrivateRoute(){
   return signEd ? <Outlet /> : <Navigate to="/" />
 }
 
-
 export default PrivateRoute

@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react"
-import { Link, Navigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import Form from "react-bootstrap/Form"
 import InputGroup from "react-bootstrap/InputGroup"
 import Button from "react-bootstrap/Button"
 import useAuthContext from "../../hook/useAuthContext"
 import useEditContext from "../../hook/useEditContext"
 
-
-import Api from "../../services/api.jsx"
+import Api from "../../services/api"
 import "./Home.css"
 
 function Home() {
+  const navigate = useNavigate()
   const { signOut } = useAuthContext()
   const {
     setId,
@@ -46,10 +46,12 @@ function Home() {
       .then((res) => {
         setPatrimonys(res.data)
       })
-      .catch((Error) => {
-        alert(`Erro ao carregar os dados do Patrimonio - ${Error}`)
+      .catch((error) => {
+        alert(
+          `Erro ao carregar os dados do Patrimonio - ${error.response.data}`
+        )
       })
-  })
+  }, [patrimonys])
 
   const handleEdit = (item) => {
     setId(item._id)
@@ -61,7 +63,7 @@ function Home() {
     setTransferDate(item.transferDate)
     setDestinationLocation(item.destinationLocation)
 
-   return <Navigate to="/edit" />
+    return navigate("/edit")
   }
 
   return (

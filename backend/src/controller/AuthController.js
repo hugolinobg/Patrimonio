@@ -6,7 +6,7 @@ import User from "../schemas/User.js"
 const { Request, Response } = express
 
 class AuthController {
-  async authenticate(req = Request, res = Response) {
+  async auth(req = Request, res = Response) {
     const { email, password } = req.body
 
     try {
@@ -17,7 +17,7 @@ class AuthController {
 
       if (!user) {
         return res.status(404).json({
-          message: `User Not Found`,
+          error: `User Not Found`,
         })
       }
 
@@ -25,12 +25,12 @@ class AuthController {
 
       if (!isValuesPassword) {
         return res.status(404).json({
-          message: `Password invalid`,
+          error: `Password invalid`,
         })
       }
 
       const token = jwt.sign({ id: user._id }, `${process.env.JWT_KEY}`, {
-        expiresIn: "2d",
+        expiresIn: "1d",
       })
 
       const { _id } = user

@@ -6,9 +6,9 @@ import AuthMiddlewares from "../middlewares/auth.js"
 
 const routes = Router()
 
-routes.post("/v1/api/auth", authController.authenticate)
+routes.post("/v1/api/auth", authController.auth)
 
-routes.get("/v1/api/patrimony", AuthMiddlewares, patrimonyController.find)
+routes.get("/v1/api/patrimony", patrimonyController.find)
 routes.post("/v1/api/patrimony", AuthMiddlewares, patrimonyController.create)
 routes.put("/v1/api/patrimony/:id", AuthMiddlewares, patrimonyController.put)
 routes.delete(
