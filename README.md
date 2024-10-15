@@ -1,4 +1,4 @@
-## Sistema de Gerenciamento de Patrimônios
+## Sistema de Controle do Patrimônio Escolar
 
 <br>
 <p align="center">
